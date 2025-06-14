@@ -4,67 +4,55 @@ This project is designed to help you learn React, Node.js, Express, and other mo
 
 ## Project Structure
 
-- `/src` - React frontend code
-- `/server` - Express backend server
-- `/tailwind.config.js` - Tailwind CSS configuration
+- /src - React frontend code
+- /server - Express backend server
+- /tailwind.config.js - Tailwind CSS configuration
 
 ## Getting Started
 
-1. Install dependencies:
-   ```bash
-   # Install frontend dependencies
-   npm install
-   
-   # Install server dependencies
-   cd server
-   npm install
-   ```
+### Install frontend dependencies
+```javascript
+npm install
+```
 
-2. Start the development servers:
-   ```bash
-   # Start the Express server (in one terminal)
-   cd server
-   npm run dev
-   
-   # Start the React development server (in another terminal)
-   cd ..
-   npm start
-   ```
+### Install server dependencies
+```javascript
+cd server
+npm install
+```
 
-3. Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
+(See /server/README.md for backend environment setup and database configuration)
+
+### Start the Express backend
+```javascript
+cd server
+npm run dev
+```
+
+### In a separate terminal, start the React frontend
+```javascript
+npm run dev
+```
+
+Open your browser and navigate to http://localhost:5173 to see the app running.
 
 ## Technologies Used
 
-- React with TypeScript
-- Node.js/Express
+- React (with hooks and functional components)
+- Vite
+- TypeScript
 - Tailwind CSS
-- MySQL (for database examples)
+- Express (Node.js backend)
+- Postman (for API testing)
+- DBeaver (visual database client for managing MySQL)
+- ESLint & Prettier (code quality)
 
-## Features
+## Learning Goals
 
-- Tree traversal visualization
-- Async data handling
-- State management
-- TypeScript integration
-- Modern React patterns
-- Express API integration
+- Practice React fundamentals: state, props, hooks, components
+- Strengthen understanding of Node.js and Express API building
+- Build full-stack apps with React + Express
+- Write clean, maintainable code using TypeScript
+- Improve frontend styling with Tailwind CSS
+- Reinforce Git/GitHub usage for version control
 
-## Learning Objectives
-
-This project aims to help you understand and practice:
-- React component patterns
-- State management
-- Tree traversal algorithms
-- Async/await patterns
-- Express API development
-- Database operations
-- TypeScript usage
-- Modern web development practices
-
-## Contributing
-
-Feel free to submit issues and enhancement requests!
-
-## License
-
-This project is for educational purposes only.
