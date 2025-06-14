@@ -1,16 +1,18 @@
-version: '3.8'
+# Docker Compose file to spin up MySQL database inside Docker container
+
+version: '3.8'  # Compose file format version
 
 services:
   mysql:
-    image: mysql:8.0
-    container_name: react-tutorial-mysql
-    restart: always
+    image: mysql:8.0  # Use official MySQL 8.0 image from Docker Hub
+    container_name: react-tutorial-mysql  # Name the container for easy reference
+    restart: always  # Automatically restart container if it stops
     env_file:
-      - .env
+      - .env  # Load MySQL environment variables from .env file
     ports:
-      - "3306:3306"
+      - "3306:3306"  # Map MySQL port 3306 from container to local machine
     volumes:
-      - mysql_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql  # Persist database data between restarts
 
 volumes:
-  mysql_data:
+  mysql_data:  # Named volume to store MySQL data persistently
