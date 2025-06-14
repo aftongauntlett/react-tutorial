@@ -46,6 +46,8 @@ Open your browser and navigate to http://localhost:5173 to see the app running.
 - Postman (for API testing)
 - DBeaver (visual database client for managing MySQL)
 - ESLint & Prettier (code quality)
+- ChatGPT (GPT-4o & GPT-4-turbo) — used for code reviews, teaching explanations, and architecture planning
+- Windsurf — experimental AI coding environment used for code generation and scaffolding
 
 ## Learning Goals
 
@@ -56,3 +58,14 @@ Open your browser and navigate to http://localhost:5173 to see the app running.
 - Improve frontend styling with Tailwind CSS
 - Reinforce Git/GitHub usage for version control
 
+## Notes:
+This project intentionally includes more instructional comments than a typical production codebase. The goal is to help newer developers understand not only what the code is doing, but also why it’s structured this way.
+
+## AI Usage & Transparency:
+Parts of this project were developed with the assistance of AI tools to support the learning process.
+Specifically:
+- ChatGPT (GPT-4o and GPT-4-turbo models) was used to help explain concepts, generate scaffolding code, and write tutorial-style comments.
+- Windsurf AI editor was used for some of the initial project scaffolding.
+- All code was reviewed, modified, and iterated manually to ensure correctness, educational clarity, and personal understanding.
+
+*The AI involvement is disclosed here to remain fully transparent about the learning process and responsible AI-assisted development.*
