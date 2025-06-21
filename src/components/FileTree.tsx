@@ -1,8 +1,11 @@
 /**
  * FileTree.tsx
- * 
- * Recursively renders a nested file/folder tree structure with expand/collapse functionality.
- * Demonstrates recursion + stateful rendering in React functional components.
+ *
+ * Recursively renders a file/folder tree with expand/collapse support.
+ * Demonstrates:
+ * - Recursive rendering
+ * - Local component state
+ * - Interactive tree traversal
  */
 
 import React, { useState } from 'react';
@@ -12,40 +15,40 @@ type FileTreeProps = {
   nodes: FileNode[];
 };
 
+/**
+ * Renders a nested tree of file/folder nodes.
+ * Allows folders to be expanded/collapsed.
+ */
 export function FileTree({ nodes }: FileTreeProps) {
-  // Local state to track which folders are expanded
+  // Track which folder nodes are expanded by ID
   const [openNodes, setOpenNodes] = useState<Set<number>>(new Set());
 
-  // Toggle expand/collapse by node id
+  // Toggle folder open/closed by modifying the ID Set
   const toggleNode = (id: number) => {
     setOpenNodes(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(id)) {
-        newSet.delete(id);
-      } else {
-        newSet.add(id);
-      }
+      const newSet = new Set(prev); // shallow copy
+      newSet.has(id) ? newSet.delete(id) : newSet.add(id);
       return newSet;
     });
   };
 
   return (
-    <ul className="ml-4 space-y-1">
+    <ul className="ml-4 space-y-2">
       {nodes.map((node) => (
         <li key={node.id} className="flex flex-col">
           <div
-            className="p-1 rounded bg-white shadow-sm cursor-pointer hover:bg-gray-100 flex items-center"
+            className="px-3 py-2 rounded-lg bg-slate-700/50 border border-slate-600 text-white cursor-pointer hover:bg-slate-600/60 transition-colors flex items-center"
             onClick={() => node.type === 'folder' && toggleNode(node.id)}
           >
-            <span className="mr-2">
+            <span className="mr-2 text-lg">
               {node.type === 'folder'
                 ? openNodes.has(node.id) ? '📂' : '📁'
                 : '📄'}
             </span>
-            <span className="font-semibold">{node.name}</span>
+            <span className="font-medium">{node.name}</span>
           </div>
 
-          {/* Only render children if node is open */}
+          {/* Recursively render children if folder is expanded */}
           {node.children && node.children.length > 0 && openNodes.has(node.id) && (
             <FileTree nodes={node.children} />
           )}
