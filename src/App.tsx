@@ -1,25 +1,17 @@
 /**
- * App.tsx
+ * Home.tsx
  *
- * Root-level component that sets up client-side routing using React Router.
- * This wraps the entire app in a Router and defines which component renders for each route.
+ * Landing page for the simulator.
+ * Offers clickable links to individual "planet missions" (lessons),
+ * which will eventually be styled as interactive planets.
  */
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Vulcan from './pages/Vulcan';
-import Bajor from './pages/Bajor';
+import GalaxyScene from "./components/GalaxyScene";
 
-function App() {
+export default function Home() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/vulcan" element={<Vulcan />} />
-        <Route path="/bajor" element={<Bajor />} />
-      </Routes>
-    </Router>
+    <div className="w-full h-screen overflow-hidden bg-black">
+      <GalaxyScene />
+    </div>
   );
 }
-
-export default App;

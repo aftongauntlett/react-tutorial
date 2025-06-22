@@ -41,13 +41,16 @@ Open your browser and navigate to http://localhost:5173 to see the app running.
 - React (with hooks and functional components)
 - Vite
 - TypeScript
-- Tailwind CSS
+- Tailwind CSS (v3.4.3)
 - Express (Node.js backend)
 - Postman (for API testing)
 - DBeaver (visual database client for managing MySQL)
 - ESLint & Prettier (code quality)
 - ChatGPT (GPT-4o & GPT-4-turbo) — used for code reviews, teaching explanations, and architecture planning
 - Windsurf — experimental AI coding environment used for code generation and scaffolding
+
+## Attribution
+“Enterprise NCC-1701-D” by Commander Spork, used under CC BY-NC.
 
 ## Learning Goals
 
