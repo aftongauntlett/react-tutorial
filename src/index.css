@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-background: #000000;
+  --color-text: #ffffff;
+  --color-muted: #888888;
+  --color-surface: #111111;
+  --color-line: #333333;
+}
+
+html.dark {
+  --color-background: #000000;
+  --color-text: #ffffff;
+  --color-muted: #888888;
+  --color-surface: #111111;
+  --color-line: #333333;
+}
+
+html.light {
+  --color-background: #ffffff;
+  --color-text: #000000;
+  --color-muted: #666666;
+  --color-surface: #f9f9f9;
+  --color-line: #dddddd;
+}

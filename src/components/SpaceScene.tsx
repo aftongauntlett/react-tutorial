@@ -1,1 +1,0 @@
-import React from 'react'; // or any other import
