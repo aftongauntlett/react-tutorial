@@ -5,13 +5,14 @@
  */
 
 import { planets } from '@/utils/planetData';
+import type { Planet } from '@/utils/planetData';
 
 export default function PlanetList() {
   return (
     <ul className="text-white text-sm">
-      {planets.map((planet) => (
-        <li key={planet.name}>{planet.name}</li>
-      ))}
+      {planets.map((planet: Planet) => (
+  <li key={planet.name}>{planet.name}</li>
+))}
     </ul>
   );
 }
