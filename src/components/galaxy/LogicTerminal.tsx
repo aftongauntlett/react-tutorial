@@ -7,7 +7,7 @@
 
 import { useState } from 'react';
 
-interface PlanetData {
+interface planetData {
   name: string;
   distance: number;
 }
@@ -19,7 +19,7 @@ export default function LogicTerminal() {
     'Scanning for nearby planets...',
   ]);
 
-  const [planets, setPlanets] = useState<PlanetData[]>([
+  const [planets, setPlanets] = useState<planetData[]>([
     { name: 'Kepler-22b', distance: 13.4 },
     { name: 'Proxima Centauri b', distance: 4.2 },
     { name: 'HD 209458 b', distance: 7.6 },
