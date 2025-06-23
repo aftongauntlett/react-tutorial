@@ -1,14 +1,17 @@
-import GalaxyScene from '../components/GalaxyScene';
+import { MissionContent, GalaxyScene } from '../components/galaxy';
 
 export default function DistanceOptimization() {
   return (
     <div className="min-h-screen bg-black text-white relative">
       <GalaxyScene />
-      <div className="absolute top-0 left-0 p-6 z-10 max-w-md">
-        <h2 className="text-2xl font-montserrat font-bold mb-2">Star Trek</h2>
-        <p className="text-body text-sm text-[var(--color-muted)]">
-WIP        </p>
-      </div>
+     <MissionContent>
+        <p className="text-lg leading-relaxed">
+          You are the commander of the USS Enterprise. Your task is to calculate the minimum
+          number of refueling stops required to reach your destination planet.
+        </p>
+
+        {/* You can add question prompts, inputs, diagrams here */}
+      </MissionContent>
     </div>
   );
 }

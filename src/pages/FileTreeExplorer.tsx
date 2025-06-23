@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { buildFileTree, FileNode } from '../utils/buildTree';
-import { FileTree } from '../components/FileTree';
+import { FileTree } from '../components/magic/FileTree';
 
 export default function FileTreeExplorer() {
   const [fileTree, setFileTree] = useState<FileNode[]>([]);

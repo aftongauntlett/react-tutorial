@@ -1,4 +1,4 @@
-import { TreeExplanation } from "../components/TreeExplanation";
+import { TreeExplanation } from "../components/magic/TreeExplanation";
 
 export default function Bajor() {
   return (

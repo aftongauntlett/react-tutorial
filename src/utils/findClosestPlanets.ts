@@ -1,6 +1,6 @@
 type Point3D = { x: number; y: number; z: number };
 
-export function findClosestStations(
+export function findClosestPlanets(
   current: Point3D,
   stations: Point3D[],
   limit = 10

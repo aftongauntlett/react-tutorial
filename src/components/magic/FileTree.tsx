@@ -8,8 +8,8 @@
  * - Interactive tree traversal
  */
 
-import React, { useState } from 'react';
-import { FileNode } from '../utils/buildTree';
+import { useState } from 'react';
+import { FileNode } from '../../utils/buildTree';
 
 type FileTreeProps = {
   nodes: FileNode[];
