@@ -1,10 +1,3 @@
-/**
- * LogicTerminal.tsx
- *
- * A terminal-style UI component for displaying logic updates,
- * such as distance calculations to nearby planets.
- */
-
 import { useState } from 'react';
 
 interface planetData {
@@ -32,47 +25,62 @@ export default function LogicTerminal() {
     { name: 'Tau Ceti e', distance: 11.2 },
   ]);
 
-  const handleWarp = () => {
-    setLogs((prev) => [
-      ...prev,
-      `Warp initiated...`,
-      `Re-scanning from new coordinates...`,
-    ]);
+  const [scanning, setScanning] = useState(false);
 
-    // Simulate ship movement by re-sorting distances
-    setPlanets((prev) =>
-      [...prev]
-        .map((p) => ({ ...p, distance: +(p.distance + (Math.random() - 0.5) * 5).toFixed(1) }))
-        .sort((a, b) => a.distance - b.distance)
-    );
+  const handleWarp = () => {
+    setScanning(true);
+    setLogs((prev) => [...prev, `Warp initiated...`, `Re-scanning from new coordinates...`]);
+
+    setTimeout(() => {
+      setPlanets((prev) =>
+        [...prev]
+          .map((p) => ({
+            ...p,
+            distance: +(p.distance + (Math.random() - 0.5) * 5).toFixed(1),
+          }))
+          .sort((a, b) => a.distance - b.distance)
+      );
+      setScanning(false);
+    }, 1800); // ~1.8s scanning delay
   };
 
   return (
-    <section className="w-full max-w-5xl mx-auto mt-8 p-4 rounded-lg bg-[var(--color-terminal-bg)] text-[var(--color-terminal-text)] font-mono shadow-lg">
+    <section className="bg-[var(--color-background)] p-4 rounded-md border-l-8 border-[var(--color-accent)] space-y-4">
+      {' '}
       <h2 className="text-xl mb-2 tracking-wide uppercase">Command Terminal</h2>
-
       <div className="mb-4 space-y-1 max-h-40 overflow-y-auto border-y py-2 border-[var(--color-line)] text-sm">
         {logs.map((log, i) => (
           <p key={i}>{`> ${log}`}</p>
         ))}
+        {scanning && (
+          <p className="animate-pulse text-[var(--color-muted)]">{`> Scanning for planetary data...`}</p>
+        )}
       </div>
-
       <h3 className="text-sm uppercase text-[var(--color-muted)] mb-1">Nearest Planets</h3>
       <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 text-sm">
-        {planets.map((planet, i) => (
-          <li key={i} className="bg-[var(--color-terminal-box)] p-2 rounded">
-            <strong>{planet.name}</strong>
-            <br />
-            {planet.distance.toFixed(1)} ly
-          </li>
-        ))}
+        {scanning
+          ? Array.from({ length: 10 }).map((_, i) => (
+              <li
+                key={i}
+                className="bg-[var(--color-terminal-box)] p-2 rounded animate-pulse text-center text-[var(--color-muted)]"
+              >
+                Scanning...
+              </li>
+            ))
+          : planets.map((planet, i) => (
+              <li key={i} className="bg-[var(--color-terminal-box)] p-2 rounded">
+                <strong>{planet.name}</strong>
+                <br />
+                {planet.distance.toFixed(1)} ly
+              </li>
+            ))}
       </ul>
-
       <button
-        className="mt-4 px-4 py-2 rounded bg-[var(--color-primary)] hover:bg-opacity-80 transition"
+        className="mt-4 px-4 py-2 rounded bg-[var(--color-primary)] hover:bg-opacity-80 transition text-black disabled:opacity-60"
         onClick={handleWarp}
+        disabled={scanning}
       >
-        Warp to new sector
+        {scanning ? 'Calculating...' : 'Warp to new sector'}
       </button>
     </section>
   );

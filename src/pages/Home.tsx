@@ -8,9 +8,9 @@
 
 import { Link } from 'react-router-dom';
 import {
-  PiFlowArrowBold,       // Icon for distance optimization
-  PiTreeStructure,        // Icon for tree traversal
-  PiGitBranchLight        // Icon for file explorer
+  PiFlowArrowBold, // Icon for distance optimization
+  PiTreeStructure, // Icon for tree traversal
+  PiGitBranchLight, // Icon for file explorer
 } from 'react-icons/pi';
 import type { IconType } from 'react-icons';
 
@@ -33,22 +33,22 @@ export default function HomePage() {
       title: 'Starship Refuel Challenge',
       description:
         'A greedy optimization problem with interstellar flair. Navigate between gas stops efficiently.',
-      Icon: PiFlowArrowBold
+      Icon: PiFlowArrowBold,
     },
     {
       to: '/file-tree-explorer',
       title: 'File Tree Explorer',
       description:
         'Learn depth-first and breadth-first search through an interactive file system journey.',
-      Icon: PiTreeStructure
+      Icon: PiTreeStructure,
     },
     {
       to: '/tree-traversal',
       title: 'Distance Between Nodes',
       description:
         'Use lowest common ancestor techniques to calculate the shortest path between nodes.',
-      Icon: PiGitBranchLight
-    }
+      Icon: PiGitBranchLight,
+    },
   ];
 
   return (
@@ -59,12 +59,17 @@ export default function HomePage() {
           <h1 className="text-5xl font-bold font-montserrat tracking-tight mb-4 text-[var(--color-primary)]">
             Intro to Dev
           </h1>
-          <p className="text-lg text-[var(--color-muted)] leading-relaxed font-light">
-            Explore interactive missions designed to build technical intuition through story-driven coding problems.
-            From fuel logistics to tree recursion, each challenge teaches a core concept in a visual, playful way.
+          <p className="text-lg text-[var(--color-muted)] leading-relaxed font-light mb-4">
+            Welcome to this "tutorial" of sorts. Here we will explore interactive missions designed
+            to build technical intuition through story-driven coding problems. From fuel logistics
+            to tree recursion, each challenge teaches a core concept in a visual, playful way.
+          </p>
+          <p className="text-lg text-[var(--color-muted)] leading-relaxed font-light mb-4">
+            Why make this interactive? Because coding challenges often disguise math problems as
+            weird stories. I use various scenes to show how I break down these stories — not ignore
+            them, but <em>lean into them</em> and make them fun.
           </p>
         </header>
-
         {/* Problem Cards */}
         <section className="grid gap-8 sm:grid-cols-2">
           {cardData.map(({ to, title, description, Icon }) => (
