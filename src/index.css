@@ -2,33 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
 body {
-  @apply bg-[var(--color-background)] text-[var(--color-text)];
+  @apply bg-black text-white h-screen w-screen overflow-hidden;
 }
 
 :root,
 html.dark {
-  --color-background: #0e0c0a;        /* very dark brown-black */
-  --color-surface: #1d1a17;           /* warm dark surface */
-  --color-text: #f3f0e7;              /* soft off-white */
-  --color-muted: #c0bcb9;             /* faded parchment */
-  --color-line: #39342e;              /* low-contrast divider */
-  --color-primary: #74bbad;           /* warm teal (titles, headers) */
-  --color-accent: #e06c75;            /* soft ember red (icons, links) */
+  --color-background: #0e0c0a; /* very dark brown-black */
+  --color-surface: #1d1a17; /* warm dark surface */
+  --color-text: #f3f0e7; /* soft off-white */
+  --color-muted: #c0bcb9; /* faded parchment */
+  --color-line: #39342e; /* low-contrast divider */
+  --color-primary: #74bbad; /* warm teal (titles, headers) */
+  --color-accent: #e06c75; /* soft ember red (icons, links) */
 }
 
 html.light {
-  --color-background: #fdfaf5;        /* warm light cream */
-  --color-surface: #fffdf8;           /* bright surface */
-  --color-text: #2c2a27;              /* deep espresso brown */
-  --color-muted: #7b7365;             /* taupe-gray */
-  --color-line: #e7e3dc;              /* subtle divider */
-  --color-primary: #277e91;           /* rich teal (headers) */
-  --color-accent: #b3564d;            /* warm clay red (icons, links) */
+  --color-background: #fdfaf5; /* warm light cream */
+  --color-surface: #fffdf8; /* bright surface */
+  --color-text: #2c2a27; /* deep espresso brown */
+  --color-muted: #7b7365; /* taupe-gray */
+  --color-line: #e7e3dc; /* subtle divider */
+  --color-primary: #277e91; /* rich teal (headers) */
+  --color-accent: #b3564d; /* warm clay red (icons, links) */
 }
 
 @keyframes galaxyPulse {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {
