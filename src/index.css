@@ -4,18 +4,19 @@
 
 html,
 body {
-  @apply bg-black text-white h-screen w-screen overflow-hidden;
+  @apply bg-black text-white min-h-screen w-full overflow-x-hidden;
 }
 
 :root,
 html.dark {
-  --color-background: #0e0c0a; /* very dark brown-black */
-  --color-surface: #1d1a17; /* warm dark surface */
-  --color-text: #f3f0e7; /* soft off-white */
-  --color-muted: #c0bcb9; /* faded parchment */
-  --color-line: #39342e; /* low-contrast divider */
-  --color-primary: #74bbad; /* warm teal (titles, headers) */
-  --color-accent: #e06c75; /* soft ember red (icons, links) */
+  --color-background: #0f0f0f;
+  --color-surface: #1a1a1a;
+  --color-text: #dcdcdc;
+  --color-muted: #888888;
+  --color-accent: #ffffff;
+  --color-line: #39342e;
+  --color-primary: #74bbad;
+  --color-accent: #e06c75;
 }
 
 html.light {
@@ -26,19 +27,4 @@ html.light {
   --color-line: #e7e3dc; /* subtle divider */
   --color-primary: #277e91; /* rich teal (headers) */
   --color-accent: #b3564d; /* warm clay red (icons, links) */
-}
-
-@keyframes galaxyPulse {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-galaxy {
-  background-size: 400% 400%;
-  animation: galaxyPulse 20s ease-in-out infinite;
 }
