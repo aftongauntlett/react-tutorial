@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import OptionsModal from './OptionsModal';
+import SettingsModal from './settings/SettingsModal';
 
 function MenuItem({
   label,
@@ -42,7 +42,7 @@ export default function StanleyMenu() {
       <MenuItem label="Options" onClick={() => setShowOptions(true)} />
       <MenuItem label="Credits" disabled />
       <MenuItem label="Quit" onClick={() => navigate('/')} />
-      {showOptions && <OptionsModal onClose={() => setShowOptions(false)} />}
+      {showOptions && <SettingsModal onClose={() => setShowOptions(false)} />}{' '}
     </div>
   );
 }
