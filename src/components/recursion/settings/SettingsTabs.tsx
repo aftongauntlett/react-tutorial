@@ -1,28 +1,25 @@
-interface SettingsTabsProps {
-  activeTab: 'Audio' | 'Gameplay' | 'Video';
-  onChange: (tab: 'Audio' | 'Gameplay' | 'Video') => void;
-}
+type SettingsTabsProps<T extends string> = {
+  tabs: readonly T[];
+  activeTab: T;
+  setActiveTab: (tab: T) => void;
+};
 
-const tabs: ('Audio' | 'Gameplay' | 'Video')[] = ['Audio', 'Gameplay', 'Video'];
-
-export default function SettingsTabs({ activeTab, onChange }: SettingsTabsProps) {
+export default function SettingsTabs<T extends string>({
+  tabs,
+  activeTab,
+  setActiveTab,
+}: SettingsTabsProps<T>) {
   return (
-    <div className="flex gap-6 border-b border-[var(--color-line)] mb-6">
+    <div className="flex w-full text-xl font-bold">
       {tabs.map((tab) => (
-        <button
+        <div
           key={tab}
-          onClick={() => onChange(tab)}
-          className={`relative pb-2 text-xl font-semibold tracking-wide ${
-            activeTab === tab
-              ? 'text-yellow-400'
-              : 'text-[var(--color-muted)] hover:text-[var(--color-text)]'
-          }`}
+          onClick={() => setActiveTab(tab)}
+          className={`flex-1 py-8 text-center cursor-pointer select-none capitalize text-5xl tracking-wide
+            ${activeTab === tab ? 'bg-yellow-400 text-black' : 'bg-black text-white'}`}
         >
           {tab}
-          {activeTab === tab && (
-            <span className="absolute bottom-0 left-0 w-full h-[3px] bg-yellow-400" />
-          )}
-        </button>
+        </div>
       ))}
     </div>
   );

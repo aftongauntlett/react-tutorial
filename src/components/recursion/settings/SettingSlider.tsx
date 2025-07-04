@@ -1,19 +1,24 @@
-interface SettingSliderProps {
-  label: string;
-  value: number;
-}
+import { useState } from 'react';
 
-export default function SettingSlider({ label, value }: SettingSliderProps) {
+type SettingSliderProps = {
+  defaultValue?: number;
+};
+
+export default function SettingSlider({ defaultValue = 50 }: SettingSliderProps) {
+  const [value, setValue] = useState(defaultValue);
+
   return (
-    <div className="flex items-center justify-between gap-4">
-      <label className="text-[var(--color-text)] text-body">{label}</label>
-      <div className="flex items-center gap-2">
-        <span className="text-muted text-sm w-6 text-right">{value}</span>
+    <div className="flex items-center gap-4">
+      <span className="w-8 text-xl font-bold">{value}</span>
+      <div className="relative w-full">
         <input
           type="range"
+          min={0}
+          max={100}
           value={value}
-          disabled
-          className="w-32 h-2 appearance-none bg-[var(--color-line)] rounded outline-none cursor-default"
+          onChange={(e) => setValue(Number(e.target.value))}
+          className="flex"
+          style={{ '--tw-range-fill': `${value}%` } as React.CSSProperties}
         />
       </div>
     </div>

@@ -1,23 +1,21 @@
-interface SettingToggleProps {
-  label: string;
-  enabled?: boolean;
-}
+import { useState } from 'react';
 
-export default function SettingToggle({ label, enabled = false }: SettingToggleProps) {
+export default function SettingToggle() {
+  const [enabled, setEnabled] = useState(false);
+
   return (
-    <div className="flex items-center justify-between">
-      <label className="text-[var(--color-text)] text-body">{label}</label>
-      <div
-        className={`w-10 h-5 rounded-full transition-colors ${
-          enabled ? 'bg-yellow-400' : 'bg-[var(--color-line)]'
-        } relative`}
+    <div className="flex items-center justify-start gap-4">
+      <span className=" w-7 text-xl font-bold text-white text-[clamp(1rem,1.2vw,1.2rem)]">
+        {enabled ? 'On' : 'Off'}
+      </span>
+
+      <button
+        onClick={() => setEnabled(!enabled)}
+        className="relative w-6 h-6 bg-black border border-white"
+        aria-pressed={enabled}
       >
-        <div
-          className={`w-4 h-4 bg-[var(--color-surface)] rounded-full absolute top-[2px] transition-transform ${
-            enabled ? 'translate-x-[22px]' : 'translate-x-[2px]'
-          }`}
-        />
-      </div>
+        {enabled && <div className="absolute inset-1 bg-yellow-400 border border-black" />}
+      </button>
     </div>
   );
 }

@@ -37,7 +37,7 @@ export default function StanleyMenu() {
   const [showOptions, setShowOptions] = useState(false);
 
   return (
-    <div className="flex flex-col gap-[0.65rem] text-[var(--color-text)]">
+    <div className="flex flex-col gap-6 text-[var(--color-text)]">
       <MenuItem label="Begin Simulation" onClick={() => navigate('/recursion/sim')} />
       <MenuItem label="Options" onClick={() => setShowOptions(true)} />
       <MenuItem label="Credits" disabled />
