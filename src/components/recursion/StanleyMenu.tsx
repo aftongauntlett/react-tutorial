@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { JSX, useState } from 'react';
 import SettingsModal from './settings/SettingsModal';
 
 function MenuItem({
@@ -7,7 +7,7 @@ function MenuItem({
   onClick,
   disabled = false,
 }: {
-  label: string;
+  label: string | JSX.Element;
   onClick?: () => void;
   disabled?: boolean;
 }) {
@@ -32,13 +32,31 @@ function MenuItem({
   );
 }
 
-export default function StanleyMenu() {
+export default function StanleyMenu({
+  terminalStarted,
+  setTerminalStarted,
+}: {
+  terminalStarted: boolean;
+  setTerminalStarted: (val: boolean) => void;
+}) {
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
 
   return (
     <div className="flex flex-col gap-6 text-[var(--color-text)]">
-      <MenuItem label="Begin Simulation" onClick={() => navigate('/recursion/sim')} />
+      <MenuItem
+        label={
+          terminalStarted ? (
+            <span className="inline-flex items-center gap-1">Simulation in progress...</span>
+          ) : (
+            'Begin Simulation'
+          )
+        }
+        onClick={() => {
+          if (!terminalStarted) setTerminalStarted(true);
+        }}
+        disabled={terminalStarted}
+      />
       <MenuItem label="Options" onClick={() => setShowOptions(true)} />
       <MenuItem label="Credits" disabled />
       <MenuItem label="Quit" onClick={() => navigate('/')} />
