@@ -80,3 +80,13 @@ input[type='range']::-moz-range-thumb {
   border-radius: 9999px;
   cursor: grab;
 }
+
+/* Global scrollbar override */
+.scrollbar-hide {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
