@@ -13,20 +13,21 @@ html.dark {
   --color-surface: #1a1a1a;
   --color-text: #dcdcdc;
   --color-muted: #888888;
-  --color-accent: #ffffff;
   --color-line: #39342e;
   --color-primary: #74bbad;
   --color-accent: #e06c75;
+  --color-soft-white: #f5f5f4;
 }
 
 html.light {
-  --color-background: #fdfaf5; /* warm light cream */
-  --color-surface: #fffdf8; /* bright surface */
-  --color-text: #2c2a27; /* deep espresso brown */
-  --color-muted: #7b7365; /* taupe-gray */
-  --color-line: #e7e3dc; /* subtle divider */
-  --color-primary: #277e91; /* rich teal (headers) */
-  --color-accent: #b3564d; /* warm clay red (icons, links) */
+  --color-background: #fdfaf5;
+  --color-surface: #fffdf8;
+  --color-text: #2c2a27;
+  --color-muted: #7b7365;
+  --color-line: #e7e3dc;
+  --color-primary: #277e91;
+  --color-accent: #b3564d;
+  --color-soft-white: #f5f5f4;
 }
 
 /* === Universal range styles === */

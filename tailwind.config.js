@@ -15,13 +15,10 @@ export default {
       },
       animation: {
         pulse: 'pulse 1s steps(2, start) infinite',
+        'pulse-glow': 'pulseGlow 1s ease-in-out infinite',
         blink: 'blink 1s steps(2, start) infinite',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: 0 },
-          '100%': { opacity: 1 },
-        },
         pulse: {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0 },
@@ -29,6 +26,16 @@ export default {
         blink: {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0 },
+        },
+        pulseGlow: {
+          '0%, 100%': {
+            transform: 'scale(1)',
+            opacity: '0.6',
+          },
+          '50%': {
+            transform: 'scale(1.03)',
+            opacity: '1',
+          },
         },
       },
     },
