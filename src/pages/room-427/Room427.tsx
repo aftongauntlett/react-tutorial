@@ -66,7 +66,7 @@ export default function Room427() {
 
         {/* Page title (top-left corner) */}
         <div className="absolute top-12 left-20 z-10">
-          <p className="text-white font-semibold text-[clamp(1.4rem,2.4vw,1.6rem)] mb-[-0.5rem]">
+          <p className="text-white font-semibold text-[clamp(1.4rem,2.4vw,1.6rem)] mb-[-1.4rem] leading-none">
             You are beginning an interview with
           </p>
           <h1 className="text-white font-bold uppercase tracking-[-0.03em] text-[clamp(2.2rem,5vw,3.5rem)]">
