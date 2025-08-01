@@ -34,7 +34,7 @@ export default function FullTerminal({ name }: { name: string }) {
       {/* Terminal Window */}
       <div className="rounded-xl bg-black/90 border border-[var(--color-line)] shadow-[inset_0_1px_3px_rgba(255,255,255,0.1)] backdrop-blur-sm w-[90%] max-w-5xl h-[85%] p-6 text-green-400 font-mono text-[clamp(0.8rem,1vw,1rem)] flex flex-col justify-between">
         <div className="mb-4">
-          <p> Welcome, {name}. You’ve entered the terminal...</p>
+          <p> Welcome, {name}. You've entered the terminal...</p>
           <p className="mt-4 italic text-[var(--color-muted)]">
             Narrator voice takes over from here.
           </p>

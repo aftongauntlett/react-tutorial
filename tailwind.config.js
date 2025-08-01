@@ -3,6 +3,17 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      colors: {
+        background: 'var(--color-background)',
+        surface: 'var(--color-surface)',
+        text: 'var(--color-text)',
+        muted: 'var(--color-muted)',
+        line: 'var(--color-line)',
+        primary: 'var(--color-primary)',
+        accent: 'var(--color-accent)',
+        'soft-white': 'var(--color-soft-white)',
+        'terminal-bg': 'var(--color-terminal-bg)',
+      },
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],

@@ -34,34 +34,35 @@ export default function HomePage() {
       to: '/room-427',
       title: 'Stanley Parable',
       description:
-        'This scenario explores control flow and decision trees. The wrong branch might cost you the job. Or worse...force you to start over. Again.',
+        'This scenario explores conditional rendering and decision trees in UI. Each branch leads to a different component state…or a restart. (Still has “branching logic” vibes, but grounded in React component state)',
       Icon: PiInfinityThin,
     },
     {
       to: '/aperture-science',
       title: 'GLaDOS',
       description:
-        'Recursion, function composition, and escape from inevitable death loops. GLaDOS has generously decided to let you solve this yourself. Probably.',
+        'Recursion, render loops, and component composition. You’ll need to escape from infinite re-renders before she decides you’ve failed the test. (Keep recursion, but make it visual/React-focused, not CS theory.)',
       Icon: PiGitBranchLight,
     },
     {
       to: '/space',
       title: 'Wheatley',
       description:
-        'Unstable state. Mismanaged memory. Intermittent resets. You’ll need to wrangle state across systems with, well…Wheatley "helping".',
+        'Unstable UI state, buggy props, and memory leaks. Welcome to debugging side effects with someone wildly unqualified at your side. (Highlight real-world React bugs: useEffect, stale state, cleanup, etc.)',
       Icon: PiBugThin,
     },
     {
       to: '/black-mesa',
       title: 'G-Man',
       description:
-        'Welcome to abstraction, composition, and layered systems. This isn’t just a design pattern. It’s a structure. An arrangement. An offer.',
+        'The design pattern. The layout system. The global context. You don’t just architect components. You architect experiences. (Lean into component composition, theme/context, layout reusability.)',
       Icon: PiGearThin,
     },
     {
       to: '/final-boss',
       title: 'Final Boss',
-      description: 'An unknown force tests everything you’ve learned. The rules: [undefined].',
+      description:
+        'The UX boss battle. You’ll ship a fully reactive interface with polish, state management, animations—and maybe a few surprises.(Showcase your final project as your best UX craft.)',
       Icon: PiCrownThin,
     },
   ];
