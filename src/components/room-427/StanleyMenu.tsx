@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { JSX, useState } from 'react';
+import { useSimulationStore } from '@/lib/state/simulationStore';
 import SettingsModal from './settings/SettingsModal';
 
 function MenuItem({
@@ -41,26 +42,58 @@ export default function StanleyMenu({
 }) {
   const navigate = useNavigate();
   const [showOptions, setShowOptions] = useState(false);
+  const { phase, startSimulation, openSettings } = useSimulationStore();
+
+  const handleBeginSimulation = () => {
+    if (phase === 'idle') {
+      startSimulation();
+      // Keep existing terminal behavior for backward compatibility
+      if (!terminalStarted) setTerminalStarted(true);
+    }
+  };
+
+  const handleOpenSettings = () => {
+    if (phase === 'monitor-active') {
+      openSettings();
+    } else {
+      setShowOptions(true);
+    }
+  };
+
+  const getButtonLabel = () => {
+    switch (phase) {
+      case 'idle':
+        return 'Begin Simulation';
+      case 'phone-active':
+        return 'Answer the phone...';
+      case 'monitor-active':
+        return 'Interview in progress...';
+      case 'settings-active':
+        return 'Exploring settings...';
+      case 'assessment':
+        return 'Assessment in progress...';
+      case 'complete':
+        return 'Interview Complete';
+      default:
+        return terminalStarted ? 'Simulation in progress...' : 'Begin Simulation';
+    }
+  };
+
+  const isButtonDisabled = () => {
+    return phase !== 'idle' && phase !== 'complete';
+  };
 
   return (
     <div className="flex flex-col gap-6 text-[var(--color-text)]">
       <MenuItem
-        label={
-          terminalStarted ? (
-            <span className="inline-flex items-center gap-1">Simulation in progress...</span>
-          ) : (
-            'Begin Simulation'
-          )
-        }
-        onClick={() => {
-          if (!terminalStarted) setTerminalStarted(true);
-        }}
-        disabled={terminalStarted}
+        label={getButtonLabel()}
+        onClick={handleBeginSimulation}
+        disabled={isButtonDisabled()}
       />
-      <MenuItem label="Options" onClick={() => setShowOptions(true)} />
+      <MenuItem label="Options" onClick={handleOpenSettings} />
       <MenuItem label="Credits" disabled />
       <MenuItem label="Quit" onClick={() => navigate('/')} />
-      {showOptions && <SettingsModal onClose={() => setShowOptions(false)} />}{' '}
+      {showOptions && <SettingsModal onClose={() => setShowOptions(false)} />}
     </div>
   );
 }

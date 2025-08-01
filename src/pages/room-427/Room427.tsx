@@ -1,6 +1,9 @@
 import StanleyMenu from '@/components/room-427/StanleyMenu';
 import TerminalPanel from '@/components/room-427/TerminalPanel';
+import NarratorOverlay from '@/components/room-427/NarratorOverlay';
+import OfficePhone from '@/components/room-427/OfficePhone';
 import { useIsSmallScreen } from '@/hooks/useIsSmallScreen';
+import { useSimulationStore } from '@/lib/state/simulationStore';
 import { useState, useRef } from 'react';
 
 /**
@@ -23,6 +26,9 @@ export default function Room427() {
 
   /** Direct ref access to terminal input field */
   const inputRef = useRef<HTMLInputElement>(null);
+
+  /** Simulation state from store */
+  const { phase, isMonitorOn } = useSimulationStore();
 
   /**
    * Called once the TerminalPanel interaction completes with a name.
@@ -51,16 +57,24 @@ export default function Room427() {
 
         {/* Terminal monitor in static office screen (before fullscreen transition) */}
         <div
-          className="absolute overflow-hidden rounded-[2px] bg-black"
+          className="absolute overflow-hidden rounded-[2px]"
           style={{ top: '43%', left: '62.3%', width: '16.8%', height: '25%' }}
           onClick={() => inputRef.current?.focus()}
         >
-          {!showFullTerminal && (
-            <TerminalPanel
-              showPrompt={terminalStarted}
-              onComplete={handleComplete}
-              inputRef={inputRef}
-            />
+          {/* Monitor "off" state - gray/dark background */}
+          {!isMonitorOn && !showFullTerminal && (
+            <div className="w-full h-full bg-gray-800 flex items-center justify-center"></div>
+          )}
+
+          {/* Monitor "on" state - terminal interface */}
+          {isMonitorOn && !showFullTerminal && (
+            <div className="w-full h-full bg-black">
+              <TerminalPanel
+                showPrompt={terminalStarted}
+                onComplete={handleComplete}
+                inputRef={inputRef}
+              />
+            </div>
           )}
         </div>
 
@@ -78,6 +92,9 @@ export default function Room427() {
         <div className="absolute bottom-12 left-20 z-10">
           <StanleyMenu terminalStarted={terminalStarted} setTerminalStarted={setTerminalStarted} />
         </div>
+
+        {/* Office Phone - Interactive phone button overlay */}
+        <OfficePhone />
       </div>
 
       {/* Mobile warning overlay */}
@@ -91,6 +108,9 @@ export default function Room427() {
           Perhaps next time, Stanley will try a proper monitor.
         </p>
       </div>
+
+      {/* Stanley Parable Narrator Overlay */}
+      <NarratorOverlay />
     </section>
   );
 }
