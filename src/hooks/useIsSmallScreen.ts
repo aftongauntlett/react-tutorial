@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
+import { GAME_CONFIG } from '../lib/constants';
 
-export function useIsSmallScreen(breakpoint = 768) {
-  const [isSmall, setIsSmall] = useState(false);
+export function useIsSmallScreen(breakpoint = GAME_CONFIG.BREAKPOINTS.SMALL_SCREEN): boolean {
+  const [isSmall, setIsSmall] = useState<boolean>(false);
 
   useEffect(() => {
-    const checkSize = () => {
+    const checkSize = (): void => {
       setIsSmall(window.innerWidth < breakpoint);
     };
 

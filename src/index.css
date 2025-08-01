@@ -17,6 +17,7 @@ html.dark {
   --color-primary: #74bbad;
   --color-accent: #e06c75;
   --color-soft-white: #f5f5f4;
+  --color-terminal-bg: #0a0a0a;
 }
 
 html.light {

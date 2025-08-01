@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './layout/Layout';
-import HomePage from './pages/Home';
+import Home from './pages/Home';
 import Room427 from './pages/room-427/Room427';
 import ControlFlowLesson from './pages/room-427/ControlFlowLesson';
 import NotFound from './pages/NotFound';
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+        <Route index element={<Home />} />
         <Route path="/room-427" element={<Room427 />} />
         <Route path="/room-427/start" element={<ControlFlowLesson />} />
         <Route path="aperture-science" element={<div>GLaDOS scene here</div>} />
