@@ -2,34 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================
+   GLOBAL BASE STYLES  
+   =========================== */
+
 html,
 body {
-  @apply bg-black text-white min-h-screen w-full overflow-x-hidden;
+  background-color: black;
+  color: white;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-:root,
-html.dark {
-  --color-background: #0f0f0f;
-  --color-surface: #1a1a1a;
-  --color-text: #dcdcdc;
-  --color-muted: #888888;
-  --color-line: #39342e;
-  --color-primary: #74bbad;
-  --color-accent: #e06c75;
-  --color-soft-white: #f5f5f4;
-  --color-terminal-bg: #0a0a0a;
-}
-
-html.light {
-  --color-background: #fdfaf5;
-  --color-surface: #fffdf8;
-  --color-text: #2c2a27;
-  --color-muted: #7b7365;
-  --color-line: #e7e3dc;
-  --color-primary: #277e91;
-  --color-accent: #b3564d;
-  --color-soft-white: #f5f5f4;
-}
+/* ===========================
+   CUSTOM FORM CONTROLS
+   =========================== */
 
 /* === Universal range styles === */
 input[type='range'] {
@@ -91,4 +79,25 @@ input[type='range']::-moz-range-thumb {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+/* Custom terminal scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb, #33ff33);
+  border-radius: 3px;
+  box-shadow: 0 0 3px var(--scrollbar-glow, #33ff33);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover, #44ff44);
+  box-shadow: 0 0 5px var(--scrollbar-glow, #33ff33);
 }

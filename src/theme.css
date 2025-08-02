@@ -1,0 +1,154 @@
+/* Game Theme System */
+
+:root {
+  /* Typography */
+  --font-body: 'Roboto', 'system-ui', 'sans-serif';
+  --font-heading: 'Montserrat', 'system-ui', 'sans-serif';
+  --font-mono: 'IBM Plex Mono', 'Courier New', 'monospace';
+  --font-terminal: 'Courier', 'Courier New', 'Lucida Console', 'Monaco', 'DejaVu Sans Mono',
+    'monospace';
+  --font-pixel: '"Press Start 2P"', 'monospace';
+  --font-oswald: 'Oswald', 'sans-serif';
+  --font-barlow: '"Barlow Condensed"', 'sans-serif';
+
+  /* Animation & Transitions */
+  --transition-fast: 200ms ease-in-out;
+  --transition-normal: 300ms ease-in-out;
+  --transition-slow: 500ms ease-in-out;
+
+  /* Base Colors (Dark Theme Only) */
+  --color-background: #0f0f0f;
+  --color-surface: #1a1a1a;
+  --color-surface-elevated: #242424;
+  --color-text: #dcdcdc;
+  --color-text-muted: #888888;
+  --color-text-subtle: #666666;
+  --color-line: #39342e;
+  --color-border: #333333;
+  --color-primary: #74bbad;
+  --color-primary-hover: #8cc5b8;
+  --color-secondary: #9ca3af;
+  --color-accent: #e06c75;
+  --color-accent-hover: #e07a84;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  --color-soft-white: #f5f5f4;
+  --color-terminal-bg: #0a0a0a;
+  --color-terminal-text: #33ff33;
+  --color-terminal-prompt: #74bbad;
+
+  /* Component-specific colors */
+  --color-button-primary: var(--color-primary);
+  --color-button-primary-hover: var(--color-primary-hover);
+  --color-button-secondary: var(--color-secondary);
+  --color-card-bg: var(--color-surface);
+  --color-card-border: var(--color-line);
+  --color-card-hover: var(--color-primary);
+
+  /* Game-specific colors */
+  --color-stanley-yellow: #facc15;
+  --color-stanley-yellow-hover: #eab308;
+  --color-wheatley-blue: #3b82f6;
+  --color-aperture-orange: #f97316;
+  --color-glados-green: #10b981;
+  --color-gman-purple: #8b5cf6;
+
+  /* Z-Index Scale */
+  --z-base: 1;
+  --z-dropdown: 10;
+  --z-overlay: 20;
+  --z-modal: 30;
+  --z-tooltip: 40;
+  --z-toast: 50;
+}
+
+/* Game Character Themes */
+.theme-stanley {
+  --color-primary: var(--color-stanley-yellow);
+  --color-primary-hover: var(--color-stanley-yellow-hover);
+  --color-accent: #1f2937;
+}
+
+.theme-wheatley {
+  --color-primary: var(--color-wheatley-blue);
+  --color-primary-hover: #2563eb;
+  --color-accent: #f3f4f6;
+}
+
+.theme-glados {
+  --color-primary: var(--color-aperture-orange);
+  --color-primary-hover: #ea580c;
+  --color-accent: var(--color-glados-green);
+}
+
+.theme-gman {
+  --color-primary: var(--color-gman-purple);
+  --color-primary-hover: #7c3aed;
+  --color-accent: #374151;
+}
+
+/* Base Styles */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+code,
+pre,
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.font-terminal {
+  font-family: var(--font-terminal);
+}
+
+/* Stanley Parable Title Styling */
+.stanley-title {
+  font-stretch: condensed !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+  font-variation-settings: 'wdth' 75 !important;
+  font-weight: 200 !important;
+  letter-spacing: -0.05em !important;
+}
+
+.font-oswald {
+  font-family: var(--font-oswald);
+}
+
+.font-barlow {
+  font-family: var(--font-barlow);
+}
+
+.font-pixel {
+  font-family: var(--font-pixel);
+}

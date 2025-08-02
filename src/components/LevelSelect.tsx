@@ -16,37 +16,37 @@ interface Level {
 
 const LEVELS: Level[] = [
   {
-    id: 'stanley',
+    id: 'narrator',
     chapter: 1,
-    title: 'The Stanley Parable',
-    subtitle: 'CONDITIONAL LOGIC',
-    concept: 'Decision Trees & Control Flow',
+    title: "The Narrator's Office",
+    subtitle: 'GIT & VERSION CONTROL',
+    concept: 'Branching, Merging & History',
     isUnlocked: true,
     route: '/room-427',
     description:
-      "Stanley worked for a company in a big building where he was Employee #427. Every day, he made decisions. Today, you'll learn how computers make them too.",
+      'Stanley worked for a company in a big building where he was Employee #427. Learn Git version control as the Narrator guides you through branching decisions and code history.',
   },
   {
     id: 'aperture',
     chapter: 2,
     title: 'Aperture Science',
-    subtitle: 'RECURSION',
-    concept: 'Functions Calling Themselves',
+    subtitle: 'REACT COMPONENTS',
+    concept: 'Component Architecture & Props',
     isUnlocked: false,
     route: '/aperture-science',
     description:
-      'GLaDOS has prepared a series of test chambers. Each chamber leads to another chamber, which leads to another chamber, which leads to...',
+      'GLaDOS has prepared a series of test chambers to teach you React components. Each component contains other components, creating a hierarchy of reusable UI pieces.',
   },
   {
     id: 'space',
     chapter: 3,
     title: 'Space Station',
-    subtitle: 'DEBUGGING',
-    concept: 'Finding & Fixing Errors',
+    subtitle: 'DEBUGGING & TESTING',
+    concept: 'Finding & Fixing Code Issues',
     isUnlocked: false,
     route: '/space',
     description:
-      'Wheatley has taken control of the facility and everything is going wrong. Very, very wrong. Time to debug this mess.',
+      'Wheatley has taken control of the facility and everything is going wrong. Learn debugging techniques and testing strategies to fix the chaos.',
   },
   {
     id: 'blackmesa',

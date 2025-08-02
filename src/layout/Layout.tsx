@@ -2,10 +2,10 @@ import { Outlet } from 'react-router-dom';
 
 export default function Layout() {
   return (
-    <>
-      <main className="min-h-screen text-[var(--color-text)] bg-[var(--color-background)] overflow-x-hidden">
+    <div className="min-h-screen w-full text-[var(--color-text)] bg-[var(--color-background)] overflow-x-hidden">
+      <main role="main" aria-label="Main content" className="relative z-10">
         <Outlet />
       </main>
-    </>
+    </div>
   );
 }
