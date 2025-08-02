@@ -1,4 +1,5 @@
 import { useSimulationStore } from '@/lib/state/simulationStore';
+import { useNarrator } from '@/hooks/useNarrator';
 import { useEffect, useState } from 'react';
 
 /**
@@ -7,56 +8,74 @@ import { useEffect, useState } from 'react';
  */
 export default function NarratorOverlay() {
   const { phase, currentNarratorText, turnOnMonitor } = useSimulationStore();
-  const [displayText, setDisplayText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
+  const [narratorStarted, setNarratorStarted] = useState(false);
 
+  // Define narrator sequences for each phase
+  const narratorSequences: Record<string, string[]> = {
+    'phone-active': [
+      'Ah, Stanley. So good of you to finally pick up the phone.',
+      "I do hope you're prepared for what promises to be... an enlightening interview experience.",
+      'You see, Stanley, we need to assess your... capabilities.',
+    ],
+    'monitor-active': [
+      'Stanley stared at his monitor, which had mysteriously come to life.',
+      'Perhaps now he could demonstrate the extent of his... programming prowess.',
+    ],
+    'settings-active': [
+      "Oh, how delightful! Stanley simply couldn't resist the allure of a settings menu.",
+      "It's almost as if he finds genuine pleasure in adjusting sliders that may or may not do anything at all.",
+    ],
+  };
+
+  const currentSequence = narratorSequences[phase] || [];
+
+  // Start narrator when phone is clicked
   useEffect(() => {
-    if (currentNarratorText) {
-      setIsTyping(true);
-      setDisplayText('');
-
-      // Typewriter effect for narrator text
-      let currentIndex = 0;
-      const typeInterval = setInterval(() => {
-        if (currentIndex < currentNarratorText.length) {
-          setDisplayText(currentNarratorText.slice(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          setIsTyping(false);
-          clearInterval(typeInterval);
-
-          // After phone activation, wait a moment then turn on monitor
-          if (phase === 'phone-active' && !isTyping) {
-            setTimeout(() => {
-              turnOnMonitor();
-            }, 2000);
-          }
-        }
-      }, 50); // Typing speed
-
-      return () => clearInterval(typeInterval);
+    if (currentNarratorText && phase === 'phone-active' && !narratorStarted) {
+      setNarratorStarted(true);
     }
-  }, [currentNarratorText, phase, turnOnMonitor, isTyping]);
+  }, [currentNarratorText, phase, narratorStarted]);
 
-  // Only show narrator overlay when there's text to display
-  if (!currentNarratorText || phase === 'idle') return null;
+  // Reset when phase changes
+  useEffect(() => {
+    setNarratorStarted(false);
+  }, [phase]);
+
+  const narrator = useNarrator({
+    lines: currentSequence,
+    isActive: narratorStarted,
+    onComplete: () => {
+      if (phase === 'phone-active') {
+        setTimeout(() => {
+          turnOnMonitor();
+        }, 500);
+      }
+    },
+  });
+
+  // Only show when narrator has started
+  if (!narratorStarted || currentSequence.length === 0) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-20 flex items-end justify-center pb-32">
       <div
-        className="bg-black/80 text-white px-8 py-4 rounded-lg max-w-4xl mx-4 border border-gray-600"
+        className="bg-black/80 text-white px-8 py-4 rounded-lg max-w-4xl mx-4 border border-gray-600 pointer-events-auto cursor-pointer"
         style={{
-          fontFamily: '"Times New Roman", serif',
+          fontFamily: 'inherit',
           fontSize: '18px',
           lineHeight: '1.4',
           textAlign: 'center',
           backdropFilter: 'blur(4px)',
         }}
+        onClick={narrator.advanceToNext}
       >
-        <p className="italic">
-          {displayText}
-          {isTyping && <span className="animate-blink">|</span>}
+        <p className="font-semibold leading-none lg:leading-relaxed">
+          {narrator.displayText}
+          {narrator.isTyping && <span className="animate-blink">|</span>}
         </p>
+        {narrator.showContinuePrompt && !narrator.isTyping && (
+          <p className="text-gray-300 text-sm mt-3 opacity-75">Click or press a key to continue</p>
+        )}
       </div>
     </div>
   );

@@ -14,8 +14,8 @@ export default function OfficePhone() {
     }
   };
 
-  // Only show the overlay when simulation is active (phone-active phase)
-  if (phase !== 'phone-active') return null;
+  // Only show the overlay when simulation is active and phone is flashing
+  if (phase !== 'phone-active' || !isPhoneFlashing) return null;
 
   return (
     <motion.div
