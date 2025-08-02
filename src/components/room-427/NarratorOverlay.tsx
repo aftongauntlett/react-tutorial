@@ -21,6 +21,16 @@ export default function NarratorOverlay() {
       'Stanley stared at his monitor, which had mysteriously come to life.',
       'Perhaps now he could demonstrate the extent of his... programming prowess.',
     ],
+    'terminal-breakout': [
+      'What... what are you doing, Stanley?',
+      'That terminal is supposed to stay INSIDE the monitor!',
+      "How did you... that's not how computers work!",
+      "Never mind. We don't have time for this nonsense.",
+    ],
+    'terminal-restore': [
+      'Finally! Stanley put the terminal back where it belongs.',
+      "Though I suspect he'll do something equally ridiculous momentarily.",
+    ],
     'settings-active': [
       "Oh, how delightful! Stanley simply couldn't resist the allure of a settings menu.",
       "It's almost as if he finds genuine pleasure in adjusting sliders that may or may not do anything at all.",
@@ -29,9 +39,13 @@ export default function NarratorOverlay() {
 
   const currentSequence = narratorSequences[phase] || [];
 
-  // Start narrator when phone is clicked
+  // Start narrator when specific phases are triggered
   useEffect(() => {
-    if (currentNarratorText && phase === 'phone-active' && !narratorStarted) {
+    if (
+      currentNarratorText &&
+      (phase === 'phone-active' || phase === 'terminal-breakout' || phase === 'terminal-restore') &&
+      !narratorStarted
+    ) {
       setNarratorStarted(true);
     }
   }, [currentNarratorText, phase, narratorStarted]);

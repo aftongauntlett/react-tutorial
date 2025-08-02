@@ -1,44 +1,78 @@
 import { create } from 'zustand';
 
+/**
+ * Simulation phases following Stanley Parable narrative structure
+ */
 export type SimulationPhase =
   | 'idle' // Initial state - monitor off, phone gray
   | 'phone-active' // Phone red dot flashing, narrator introduction
   | 'monitor-active' // Monitor on, programming questions
   | 'settings-active' // Settings menu open, CSS learning
   | 'assessment' // Post-settings questions
+  | 'terminal-breakout' // Terminal breaks out of monitor onto wall
+  | 'terminal-restore' // Terminal returns to monitor
   | 'complete'; // Interview complete
 
+/**
+ * User progress tracking for personalized experience
+ */
+interface UserProgress {
+  questionsAnswered: number;
+  settingsExplored: string[]; // Track which settings were touched
+  assessmentScore: number;
+}
+
+/**
+ * Main simulation state interface
+ * Manages the Room 427 Stanley Parable experience
+ */
 interface SimulationState {
-  // Current phase of the simulation
+  // Current simulation phase
   phase: SimulationPhase;
 
-  // UI States
+  // UI component states
   isMonitorOn: boolean;
   isPhoneFlashing: boolean;
   isSettingsOpen: boolean;
 
-  // Content state
+  // Content and narrative state
   currentNarratorText: string;
   currentQuestion: string;
-  userProgress: {
-    questionsAnswered: number;
-    settingsExplored: string[]; // Track which settings were touched
-    assessmentScore: number;
-  };
+  userProgress: UserProgress;
 
-  // Actions
+  // Timer management for idle states
+  idleTimerId: number | null;
+  idleContext: 'phone' | 'monitor' | null;
+
+  // Core simulation actions
   setPhase: (phase: SimulationPhase) => void;
   startSimulation: () => void;
   activatePhone: () => void;
   turnOnMonitor: () => void;
+  completeSimulation: () => void;
+
+  // Settings and progress actions
   openSettings: () => void;
   closeSettings: () => void;
-  completeSimulation: () => void;
-  updateNarratorText: (text: string) => void;
   recordSettingExplored: (setting: string) => void;
   answerQuestion: () => void;
+
+  // Narrative and content actions
+  updateNarratorText: (text: string) => void;
+
+  // Terminal-specific actions
+  triggerTerminalBreakout: () => void;
+  triggerTerminalRestore: () => void;
+
+  // Idle timer management
+  startNarratorIdleTimer: (context: 'phone' | 'monitor') => void;
+  clearNarratorIdleTimer: () => void;
 }
 
+/**
+ * Zustand store for simulation state management
+ * Centralized state following clean architecture principles
+ */
 export const useSimulationStore = create<SimulationState>((set, get) => ({
   // Initial state
   phase: 'idle',
@@ -52,6 +86,8 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
     settingsExplored: [],
     assessmentScore: 0,
   },
+  idleTimerId: null,
+  idleContext: null,
 
   // Actions
   setPhase: (phase) => set({ phase }),
@@ -146,5 +182,56 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
         questionsAnswered: state.userProgress.questionsAnswered + 1,
       },
     });
+  },
+
+  triggerTerminalBreakout: () => {
+    set({
+      phase: 'terminal-breakout',
+      currentNarratorText: 'What... what are you doing, Stanley?',
+    });
+  },
+
+  triggerTerminalRestore: () => {
+    set({
+      phase: 'terminal-restore',
+      currentNarratorText: 'Finally! Stanley put the terminal back where it belongs.',
+    });
+  },
+
+  startNarratorIdleTimer: (context: 'phone' | 'monitor') => {
+    const state = get();
+    // Clear existing timer
+    if (state.idleTimerId) {
+      clearTimeout(state.idleTimerId);
+    }
+
+    const timerId = setTimeout(() => {
+      if (context === 'phone') {
+        set({
+          currentNarratorText: 'Stanley? The phone is ringing. Perhaps you should answer it?',
+        });
+      } else if (context === 'monitor') {
+        set({
+          currentNarratorText:
+            'Stanley stared at the monitor. Perhaps he should type something... like "git status" or "options".',
+        });
+      }
+    }, 20000); // 20 seconds
+
+    set({
+      idleTimerId: timerId,
+      idleContext: context,
+    });
+  },
+
+  clearNarratorIdleTimer: () => {
+    const state = get();
+    if (state.idleTimerId) {
+      clearTimeout(state.idleTimerId);
+      set({
+        idleTimerId: null,
+        idleContext: null,
+      });
+    }
   },
 }));

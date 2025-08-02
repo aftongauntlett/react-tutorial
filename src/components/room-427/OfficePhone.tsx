@@ -1,15 +1,26 @@
 import { useSimulationStore } from '@/lib/state/simulationStore';
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 
 /**
  * OfficePhone component renders a clickable phone area with a flashing red notification dot.
  * Positioned over the office background image where the physical phone appears.
  */
 export default function OfficePhone() {
-  const { phase, isPhoneFlashing, activatePhone } = useSimulationStore();
+  const { phase, isPhoneFlashing, activatePhone, startNarratorIdleTimer, clearNarratorIdleTimer } =
+    useSimulationStore();
+
+  // Start idle timer when phone becomes active
+  useEffect(() => {
+    if (phase === 'phone-active' && isPhoneFlashing) {
+      startNarratorIdleTimer('phone');
+    }
+    return () => clearNarratorIdleTimer();
+  }, [phase, isPhoneFlashing, startNarratorIdleTimer, clearNarratorIdleTimer]);
 
   const handlePhoneClick = () => {
     if (phase === 'phone-active' && isPhoneFlashing) {
+      clearNarratorIdleTimer();
       activatePhone();
     }
   };
