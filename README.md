@@ -27,7 +27,7 @@ An immersive, Stanley Parable-themed git tutorial application showcasing advance
 
 ### Narrator (Stanley Parable) Experience
 
-![Tutorial Preview - Narrator Theme](./public/images/narrator-bg.png)
+![Tutorial Preview - Narrator's Office](./public/images/narrators-office.png)
 
 _Featuring immersive game-style interface, interactive git terminal, and character-driven learning narratives_
 
@@ -184,7 +184,7 @@ MIT License - Feel free to explore, learn from, and adapt the code for education
 
 ---
 
-Built with ⚡ by [Afton Gauntlett](https://github.com/aftongauntlett) • Frontend Engineer specializing in UI/UX and Accessibility
+Built with ✨ by [Afton Gauntlett](https://github.com/aftongauntlett) • Frontend Engineer specializing in UI/UX and Accessibility
 
 - DBeaver (visual database client for managing MySQL)
 - ESLint & Prettier (code quality)

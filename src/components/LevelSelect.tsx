@@ -92,11 +92,11 @@ export default function LevelSelect() {
   const showDLCUnlock = isChapter4Completed && LEVELS.some((level) => level.isHidden);
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] p-8">
+    <div className="bg-[var(--color-background)] text-[var(--color-text)] p-4 sm:p-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold font-barlow mb-2">NEW GAME</h1>
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold font-barlow mb-2">NEW GAME</h1>
           <div className="h-0.5 bg-[var(--color-line)] mb-4"></div>
 
           {/* DLC Unlock Notification */}
@@ -112,9 +112,9 @@ export default function LevelSelect() {
           )}
         </div>
 
-        <div className="grid grid-cols-12 gap-8 min-h-[600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Level List */}
-          <div className="col-span-7 space-y-3">
+          <div className="lg:col-span-7 space-y-3">
             {visibleLevels.map((level) => (
               <LevelCard
                 key={level.id}
@@ -123,43 +123,27 @@ export default function LevelSelect() {
                 onSelect={() => setSelectedLevel(level)}
               />
             ))}
-
-            {/* Hidden Chapter Placeholder */}
-            {!isChapter4Completed && (
-              <div className="p-4 border border-dashed border-[var(--color-line)] opacity-30 flex items-center justify-center">
-                <div className="text-[var(--color-muted)] text-sm text-center">
-                  <div className="text-2xl mb-2">❓</div>
-                  <div>Complete all chapters to unlock bonus content</div>
-                </div>
-              </div>
-            )}
           </div>
 
           {/* Preview Panel */}
-          <div className="col-span-5">
+          <div className="lg:col-span-5">
             <LevelPreview level={selectedLevel} />
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-4 mt-8">
-          <Link
-            to="/"
-            className="px-6 py-2 border border-[var(--color-line)] text-[var(--color-muted)] hover:text-[var(--color-text)] transition-colors font-mono"
-          >
-            Cancel
-          </Link>
+        <div className="flex justify-center sm:justify-end gap-4 mt-6">
           {selectedLevel.isUnlocked ? (
             <Link
               to={selectedLevel.route}
-              className="px-6 py-2 bg-[var(--color-primary)] text-black hover:brightness-110 transition-all font-mono font-bold"
+              className="px-6 py-2 bg-[var(--color-primary)] text-black hover:brightness-110 transition-all font-mono font-bold text-center min-w-[140px]"
             >
-              Start new game
+              Begin
             </Link>
           ) : (
             <button
               disabled
-              className="px-6 py-2 bg-[var(--color-muted)] text-[var(--color-background)] opacity-50 cursor-not-allowed font-mono"
+              className="px-6 py-2 bg-[var(--color-muted)] text-[var(--color-background)] opacity-50 cursor-not-allowed font-mono min-w-[140px]"
             >
               Locked
             </button>
@@ -185,7 +169,7 @@ function LevelCard({
     <div
       onClick={onSelect}
       className={`
-        p-4 border cursor-pointer transition-all duration-200 flex items-center gap-4
+        p-3 sm:p-4 border cursor-pointer transition-all duration-200 flex items-center gap-3 sm:gap-4
         ${
           isSelected
             ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/10'
@@ -198,7 +182,7 @@ function LevelCard({
       {/* Chapter Preview Thumbnail */}
       <div
         className={`
-        w-24 h-16 border flex items-center justify-center
+        w-20 h-12 sm:w-24 sm:h-16 border flex items-center justify-center flex-shrink-0
         ${
           isDLC
             ? 'bg-[var(--color-accent)]/10 border-[var(--color-accent)]'
@@ -237,8 +221,8 @@ function LevelCard({
         >
           {level.subtitle}
         </div>
-        <div className="font-bold text-lg font-barlow">{level.title}</div>
-        <div className="text-sm text-[var(--color-muted)]">{level.concept}</div>
+        <div className="font-bold text-base sm:text-lg font-barlow">{level.title}</div>
+        <div className="text-xs sm:text-sm text-[var(--color-muted)]">{level.concept}</div>
       </div>
 
       {/* Status Indicator */}
@@ -259,17 +243,29 @@ function LevelPreview({ level }: { level: Level }) {
   return (
     <div className="h-full border border-[var(--color-line)] bg-[var(--color-surface)]">
       {/* Preview Image Area */}
-      <div className="h-64 bg-[var(--color-background)] border-b border-[var(--color-line)] flex items-center justify-center relative overflow-hidden">
+      <div className="h-48 sm:h-64 bg-[var(--color-background)] border-b border-[var(--color-line)] flex items-center justify-center relative overflow-hidden">
         {level.isUnlocked ? (
-          <div className="text-center">
-            <div className="text-6xl mb-4">
-              {level.id === 'stanley' && '🏢'}
-              {level.id === 'aperture' && '🟦'}
-              {level.id === 'space' && '🌌'}
-              {level.id === 'blackmesa' && '🔬'}
-              {level.id === 'final' && '👔'}
-            </div>
-            <div className="text-[var(--color-muted)] text-sm">{level.title} Preview</div>
+          <div className="w-full h-full relative">
+            {level.id === 'narrator' ? (
+              <div className="w-full h-full relative">
+                <img
+                  src="/images/narrators-office.png"
+                  alt="The Narrator's Office"
+                  className="w-full h-full object-contain"
+                />
+                <div className="absolute inset-0 bg-black/20"></div>
+              </div>
+            ) : (
+              <div className="text-center flex flex-col items-center justify-center h-full">
+                <div className="text-6xl mb-4">
+                  {level.id === 'aperture' && '🟦'}
+                  {level.id === 'space' && '🌌'}
+                  {level.id === 'blackmesa' && '🔬'}
+                  {level.id === 'final' && '👔'}
+                </div>
+                <div className="text-[var(--color-muted)] text-sm">{level.title} Preview</div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center opacity-30">
@@ -280,9 +276,9 @@ function LevelPreview({ level }: { level: Level }) {
       </div>
 
       {/* Description */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 font-barlow">{level.title}</h3>
-        <div className="text-sm text-[var(--color-accent)] mb-3 font-bold tracking-wider">
+      <div className="p-4 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-bold mb-2 font-barlow">{level.title}</h3>
+        <div className="text-xs sm:text-sm text-[var(--color-accent)] mb-3 font-bold tracking-wider">
           {level.subtitle}
         </div>
         <p className="text-[var(--color-muted)] leading-relaxed text-sm">{level.description}</p>

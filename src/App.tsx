@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './layout/Layout';
 import Home from './pages/Home';
+import About from './pages/About';
 import Room427 from './pages/room-427/Room427';
 import ControlFlowLesson from './pages/room-427/ControlFlowLesson';
 import NotFound from './pages/NotFound';
@@ -13,6 +14,9 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           {/* Home/Level Selection */}
           <Route index element={<Home />} />
+
+          {/* About Page */}
+          <Route path="/about" element={<About />} />
 
           {/* Stanley Parable - Room 427 Experience */}
           <Route path="/room-427" element={<Room427 />} />
