@@ -19,17 +19,7 @@
 ![Game_Design](https://img.shields.io/badge/Game_Interface-FFE66D?style=flat&logo=unity&logoColor=black)
 ![Responsive](https://img.shields.io/badge/Responsive_Design-06D6A0?style=flat&logo=css3&logoColor=white)
 
-An immersive, Stanley Parable-themed git tutorial application showcasing advanced frontend development, game-inspired UI/UX design, and accessibility-first development practices. Features interactive terminal simulations, character-based theming, and engaging narrative-driven learning experiences.
-
-### **[Experience The Tutorial →](https://react-tutorial-demo.vercel.app)**
-
-## Preview
-
-### Narrator (Stanley Parable) Experience
-
-![Tutorial Preview - Narrator's Office](./public/images/narrators-office.png)
-
-_Featuring immersive game-style interface, interactive git terminal, and character-driven learning narratives_
+An immersive, video game themed tutorial application - showcasing advanced frontend development, game-inspired UI/UX design, and accessibility-first development practices. Features interactive terminal simulations, character-based theming, and engaging narrative-driven learning experiences.
 
 ## Features
 
@@ -51,9 +41,7 @@ _Featuring immersive game-style interface, interactive git terminal, and charact
 
 ### **Accessibility & Performance**
 
-- **Keyboard Navigation**: Full keyboard support for terminal and interface interactions
-- **Screen Reader Support**: Semantic HTML with proper ARIA labels and roles
-- **Reduced Motion Support**: Respects user preferences for motion sensitivity
+- **Full Accessibility Support**: Keyboard navigation, screen reader compatibility, and reduced motion preferences
 - **Error Boundaries**: Graceful error handling with user-friendly recovery options
 - **Performance Optimized**: Efficient rendering and state updates for smooth interactions
 
@@ -86,19 +74,13 @@ Open [http://localhost:5173](http://localhost:5173) to begin the tutorial.
 - **Custom Hooks**: Specialized hooks for narrator system, screen detection, and game logic
 - **Component Composition**: Modular architecture supporting multiple game themes and interactions
 
-### **UI/UX Design Patterns**
+### **Advanced Patterns**
 
 - **Game Interface Design**: Terminal aesthetics with authentic command-line experience
-- **Character-Based Theming**: Dynamic CSS custom properties for theme switching
-- **Micro-interactions**: Subtle animations and feedback for enhanced user engagement
-- **Information Architecture**: Clear learning progression with contextual help systems
-
-### **State Management & Logic**
-
+- **Dynamic Theming**: CSS custom properties for character-based theme switching
 - **Complex State Orchestration**: Multi-phase tutorial progression with branching narratives
 - **Terminal Simulation**: Full git command parsing and response system
-- **Theme Context**: Dynamic character theme switching with persistent user preferences
-- **Error Recovery**: Robust error handling with contextual help and retry mechanisms
+- **Micro-interactions**: Subtle animations and feedback for enhanced user engagement
 
 ## Project Structure
 
@@ -146,31 +128,12 @@ npm run lint         # Code quality checks
 
 ## Architecture Highlights
 
-### **Game-Inspired Interface Design**
-
-Component-driven architecture with TypeScript interfaces, game-style state management, and CSS custom properties for dynamic theming. Demonstrates advanced frontend patterns including:
-
 - **Terminal Simulation**: Complex command parsing and response systems
 - **Character Theming**: Dynamic visual identity switching with CSS custom properties
 - **Progressive Enhancement**: Graceful degradation for different device capabilities
-- **Accessibility Integration**: Screen reader support with game interface challenges
-
-### **Learning Experience Design**
-
 - **Narrative Integration**: Technical concepts woven into engaging storylines
 - **Interactive Feedback**: Real-time command validation and helpful error messages
-- **Contextual Help**: AI-powered assistance integrated into the game experience
-- **Progressive Complexity**: Structured learning path with clear milestones
-
-## Performance & Accessibility
-
-**Modern web standards with game interface considerations:**
-
-- **Responsive Design**: Optimized for desktop tutorial experience with mobile awareness
-- **Keyboard Navigation**: Full keyboard support for all interactive elements
-- **Screen Reader Support**: Semantic markup with proper ARIA implementation
-- **Performance Optimized**: Efficient state updates and rendering for smooth interactions
-- **Error Recovery**: User-friendly error boundaries with clear recovery paths
+- **AI-Powered Help**: Contextual assistance integrated into the game experience
 
 ## Credits
 
@@ -185,17 +148,3 @@ MIT License - Feel free to explore, learn from, and adapt the code for education
 ---
 
 Built with ✨ by [Afton Gauntlett](https://github.com/aftongauntlett) • Frontend Engineer specializing in UI/UX and Accessibility
-
-- DBeaver (visual database client for managing MySQL)
-- ESLint & Prettier (code quality)
-- ChatGPT (GPT-4o & GPT-4-turbo) — used for code reviews, teaching explanations, and architecture planning
-- Windsurf — experimental AI coding environment used for code generation and scaffolding
-
-## Learning Goals
-
-- Practice React fundamentals: state, props, hooks, components
-- Strengthen understanding of Node.js and Express API building
-- Build full-stack apps with React + Express
-- Write clean, maintainable code using TypeScript
-- Improve frontend styling with Tailwind CSS
-- Reinforce Git/GitHub usage for version control
