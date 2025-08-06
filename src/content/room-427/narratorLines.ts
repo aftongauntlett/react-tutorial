@@ -5,10 +5,17 @@ export const narratorLines = {
     'After all, it might be important.',
   ],
   phoneIdle: [
-    'Stanley? The phone is ringing.',
-    'It would be much easier if Stanley just answered the phone.',
-    'Stanley, the phone. Answer it.',
-    'Oh, for crying out loud! Stanley, the phone is ringing! Pick it up!',
+    'Stanley? The phone is ringing. You do realize phones are meant to be answered, yes?',
+    'How fascinating. Stanley appears to have forgotten the basic concept of answering a phone.',
+    "Oh for crying out loud, Stanley! It's a phone. You pick it up. This really isn't that complicated.",
+  ],
+  phoneAnswered: [
+    'Stanley worked for a company in a big building where he was Employee #427.',
+    "Employee #427's job was simple: he sat at his desk in Room 427 and he pushed buttons on a keyboard.",
+    'Orders came to him through a monitor on his desk, telling him what buttons to push, how long to push them, and in what order.',
+    'This is what Employee #427 did every day of every month of every year, and it was what he was expected to do.',
+    'Stanley, push the spacebar.',
+    'No, no! Not that one, Stanley. The other one!',
   ],
   monitorActive: [
     'The monitor flickered to life.',

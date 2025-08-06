@@ -27,24 +27,25 @@ export const GAME_CONFIG = {
 // ===========================
 
 export const THEME_COLORS = {
-  // Core colors
+  // Base colors
   background: 'var(--color-background)',
   surface: 'var(--color-surface)',
   surfaceElevated: 'var(--color-surface-elevated)',
   text: 'var(--color-text)',
-  textMuted: 'var(--color-text-muted)',
-  textSubtle: 'var(--color-text-subtle)',
+  muted: 'var(--color-muted)',
+  subtle: 'var(--color-subtle)',
   line: 'var(--color-line)',
   border: 'var(--color-border)',
 
-  // Brand colors
+  // Theme colors
   primary: 'var(--color-primary)',
   primaryHover: 'var(--color-primary-hover)',
   secondary: 'var(--color-secondary)',
+  secondaryHover: 'var(--color-secondary-hover)',
   accent: 'var(--color-accent)',
   accentHover: 'var(--color-accent-hover)',
 
-  // State colors
+  // Status colors
   success: 'var(--color-success)',
   warning: 'var(--color-warning)',
   error: 'var(--color-error)',
@@ -55,14 +56,7 @@ export const THEME_COLORS = {
   terminalBg: 'var(--color-terminal-bg)',
   terminalText: 'var(--color-terminal-text)',
   terminalPrompt: 'var(--color-terminal-prompt)',
-
-  // Game character colors
-  stanleyYellow: 'var(--color-stanley-yellow)',
-  wheatleyBlue: 'var(--color-wheatley-blue)',
-  apertureOrange: 'var(--color-aperture-orange)',
-  gladosGreen: 'var(--color-glados-green)',
-  gmanPurple: 'var(--color-gman-purple)',
-} as const;
+};
 
 // ===========================
 // TERMINAL COMMANDS

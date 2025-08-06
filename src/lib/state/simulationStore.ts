@@ -7,6 +7,7 @@ export type SimulationPhase =
   | 'idle' // Initial state - monitor off, phone gray
   | 'phone-active' // Phone red dot flashing, narrator introduction
   | 'monitor-active' // Monitor on, programming questions
+  | 'terminal-waiting' // Desktop terminal waiting state
   | 'settings-active' // Settings menu open, CSS learning
   | 'assessment' // Post-settings questions
   | 'terminal-breakout' // Terminal breaks out of monitor onto wall
@@ -40,10 +41,6 @@ interface SimulationState {
   currentQuestion: string;
   userProgress: UserProgress;
 
-  // Timer management for idle states
-  idleTimerId: number | null;
-  idleContext: 'phone' | 'monitor' | null;
-
   // Core simulation actions
   setPhase: (phase: SimulationPhase) => void;
   startSimulation: () => void;
@@ -61,12 +58,9 @@ interface SimulationState {
   updateNarratorText: (text: string) => void;
 
   // Terminal-specific actions
+  triggerTerminalWaiting: () => void;
   triggerTerminalBreakout: () => void;
   triggerTerminalRestore: () => void;
-
-  // Idle timer management
-  startNarratorIdleTimer: (context: 'phone' | 'monitor') => void;
-  clearNarratorIdleTimer: () => void;
 }
 
 /**
@@ -86,8 +80,6 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
     settingsExplored: [],
     assessmentScore: 0,
   },
-  idleTimerId: null,
-  idleContext: null,
 
   // Actions
   setPhase: (phase) => set({ phase }),
@@ -104,8 +96,7 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
     set({
       phase: 'phone-active',
       isPhoneFlashing: false,
-      currentNarratorText:
-        "Ah, Stanley. So good of you to finally pick up the phone. I do hope you're prepared for what promises to be... an enlightening interview experience.",
+      currentNarratorText: 'phone-answered', // Trigger narrator sequence
     });
   },
 
@@ -113,8 +104,7 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
     set({
       phase: 'monitor-active',
       isMonitorOn: true,
-      currentNarratorText:
-        'Stanley stared at his monitor, which had mysteriously come to life. Perhaps now he could demonstrate the extent of his... programming prowess.',
+      // Don't change currentNarratorText - let the phone sequence continue
     });
   },
 
@@ -184,6 +174,14 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
     });
   },
 
+  triggerTerminalWaiting: () => {
+    set({
+      phase: 'terminal-waiting',
+      currentNarratorText:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stanley found himself staring at the mysterious terminal interface.',
+    });
+  },
+
   triggerTerminalBreakout: () => {
     set({
       phase: 'terminal-breakout',
@@ -196,42 +194,5 @@ export const useSimulationStore = create<SimulationState>((set, get) => ({
       phase: 'terminal-restore',
       currentNarratorText: 'Finally! Stanley put the terminal back where it belongs.',
     });
-  },
-
-  startNarratorIdleTimer: (context: 'phone' | 'monitor') => {
-    const state = get();
-    // Clear existing timer
-    if (state.idleTimerId) {
-      clearTimeout(state.idleTimerId);
-    }
-
-    const timerId = setTimeout(() => {
-      if (context === 'phone') {
-        set({
-          currentNarratorText: 'Stanley? The phone is ringing. Perhaps you should answer it?',
-        });
-      } else if (context === 'monitor') {
-        set({
-          currentNarratorText:
-            'Stanley stared at the monitor. Perhaps he should type something... like "git status" or "options".',
-        });
-      }
-    }, 20000); // 20 seconds
-
-    set({
-      idleTimerId: timerId,
-      idleContext: context,
-    });
-  },
-
-  clearNarratorIdleTimer: () => {
-    const state = get();
-    if (state.idleTimerId) {
-      clearTimeout(state.idleTimerId);
-      set({
-        idleTimerId: null,
-        idleContext: null,
-      });
-    }
   },
 }));

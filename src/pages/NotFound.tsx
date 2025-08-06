@@ -44,7 +44,7 @@ export default function NotFound() {
             {message.title}
           </h1>
         </div>
-        <div className="text-[var(--color-muted)] font-pixel text-[clamp(0.95rem,2vw,1.1rem)] space-y-6 my-4">
+        <div className="text-muted font-pixel text-[clamp(0.95rem,2vw,1.1rem)] space-y-6 my-4">
           <p className="">{message.subtitle}</p>
           <p className="">{message.detail}</p>
         </div>

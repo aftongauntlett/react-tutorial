@@ -171,7 +171,7 @@ This is a common scenario in collaborative development!`,
           ) {
             style.color = 'var(--color-text-white, #e0e0e0)';
           } else {
-            style.color = 'var(--color-text-muted, #808080)';
+            style.color = 'var(--color-muted, #808080)';
           }
           break;
         case 'output':
@@ -186,7 +186,7 @@ This is a common scenario in collaborative development!`,
           }
           break;
         default:
-          style.color = 'var(--color-text-muted, #808080)';
+          style.color = 'var(--color-muted, #808080)';
       }
 
       return (
@@ -258,7 +258,7 @@ This is a common scenario in collaborative development!`,
         )}
 
         {/* Status bar */}
-        <div className="border-t border-gray-700 px-4 py-2 bg-gray-900 text-xs text-gray-400">
+        <div className="border-t border-gray-700 px-4 py-2 bg-gray-900 text-sm text-gray-400">
           <div className="flex justify-between">
             <span>Stanley's Git Learning Terminal</span>
             <span>Type 'help' for Git Assistant</span>

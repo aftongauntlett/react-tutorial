@@ -1,6 +1,6 @@
 export default function Sidebar() {
   return (
-    <nav className="flex flex-col gap-4 text-[var(--color-muted)]">
+    <nav className="flex flex-col gap-4 text-muted">
       <div className="font-bold text-[var(--color-text)]">Menu</div>
       <ul className="flex flex-col gap-2 text-sm">
         <li className="hover:text-white transition">Home</li>

@@ -1,7 +1,6 @@
 import StanleyMenu from '@/components/room-427/StanleyMenu';
-import GitTerminalPanel from '@/components/room-427/GitTerminalPanel';
 import ThemedBreakoutTerminal from '@/components/room-427/ThemedBreakoutTerminal';
-import InteractiveMonitor from '@/components/room-427/InteractiveMonitor';
+import DesktopTerminal from '@/components/room-427/DesktopTerminal';
 import NarratorOverlay from '@/components/room-427/NarratorOverlay';
 import OfficePhone from '@/components/room-427/OfficePhone';
 import { useIsSmallScreen } from '@/hooks/useIsSmallScreen';
@@ -19,6 +18,9 @@ export default function Room427() {
 
   /** Tracks if user has entered a valid command in the interactive monitor */
   const [hasEnteredCommand, setHasEnteredCommand] = useState(false);
+
+  /** Tracks if the desktop terminal sequence is complete */
+  const [desktopTerminalComplete, setDesktopTerminalComplete] = useState(false);
 
   /** Detects if screen is below minimum interactive size (mobile/tablet) */
   const isSmallScreen = useIsSmallScreen();
@@ -82,27 +84,20 @@ export default function Room427() {
             <div className="w-full h-full bg-gray-800 flex items-center justify-center"></div>
           )}
 
-          {/* Monitor "on" state - interactive terminal that can breakout */}
+          {/* Monitor "on" state - desktop terminal sequence then git terminal */}
           {isMonitorOn && !showFullTerminal && (
             <div className="w-full h-full relative">
-              <InteractiveMonitor
-                isMonitorOn={isMonitorOn}
-                onCommandEntered={(command) => {
-                  if (command.toLowerCase().includes('git status')) {
-                    // Turn off monitor and show breakout terminal
+              {!desktopTerminalComplete ? (
+                <DesktopTerminal
+                  isMonitorOn={isMonitorOn}
+                  onComplete={() => {
+                    setDesktopTerminalComplete(true);
+                    // Directly show the breakout terminal (GitTerminalPanel)
                     setShowFullTerminal(true);
-                    setHasEnteredCommand(true);
-                  } else {
-                    const validCommands = ['options', 'help', 'status', 'git'];
-                    if (validCommands.some((cmd) => command.toLowerCase().includes(cmd))) {
-                      setHasEnteredCommand(true);
-                    }
-                  }
-                }}
-              />
-              {/* Show breakout terminal button only after user has entered a command (but not git status) */}
-              {hasEnteredCommand && !showFullTerminal && (
-                <ThemedBreakoutTerminal narrator="narrator" isMonitorOn={isMonitorOn} />
+                  }}
+                />
+              ) : (
+                <div></div> // This won't show since we go to fullscreen
               )}
             </div>
           )}

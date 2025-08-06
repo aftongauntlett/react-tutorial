@@ -40,18 +40,16 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
             )}
           >
             <div className="text-6xl mb-4">⚠️</div>
-            <h2 className="text-xl font-heading font-bold text-[var(--color-text)] mb-4">
-              Something went wrong
-            </h2>
-            <p className="text-[var(--color-text-muted)] mb-6">
+            <h2 className="text-xl font-heading font-bold text-text mb-4">Something went wrong</h2>
+            <p className="text-muted mb-6">
               The application encountered an unexpected error. Please refresh the page and try
               again.
             </p>
             <button
               onClick={() => window.location.reload()}
               className={cn(
-                'w-full px-4 py-2 bg-[var(--color-primary)] text-white',
-                'rounded-md hover:bg-[var(--color-primary-hover)]',
+                'w-full px-4 py-2 bg-primary text-white',
+                'rounded-md hover:bg-primary-hover',
                 'transition-colors duration-200 font-medium'
               )}
             >
@@ -59,10 +57,8 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
             </button>
             {this.state.error && (
               <details className="mt-4 text-left">
-                <summary className="cursor-pointer text-sm text-[var(--color-text-muted)]">
-                  Error Details
-                </summary>
-                <pre className="mt-2 text-xs bg-[var(--color-surface-elevated)] p-2 rounded overflow-auto">
+                <summary className="cursor-pointer text-sm text-muted-small">Error Details</summary>
+                <pre className="mt-2 text-sm bg-surface-elevated p-2 rounded overflow-auto">
                   {this.state.error.message}
                   {'\n\n'}
                   {this.state.error.stack}

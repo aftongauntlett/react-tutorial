@@ -23,11 +23,7 @@ function MenuItem({
   );
 
   if (disabled) {
-    return (
-      <span className={cn(baseStyles, 'text-[var(--color-text-muted)] cursor-default')}>
-        {label}
-      </span>
-    );
+    return <span className={cn(baseStyles, 'text-muted cursor-default')}>{label}</span>;
   }
 
   return (

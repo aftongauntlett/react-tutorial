@@ -17,7 +17,6 @@ export default function InteractiveMonitor({
   const [showCursor, setShowCursor] = useState(true);
   const [commandHistory, setCommandHistory] = useState<{ command: string; response: string }[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { startNarratorIdleTimer, clearNarratorIdleTimer } = useSimulationStore();
 
   // Get current theme
   const theme = getNarratorTheme(narrator);
@@ -41,21 +40,9 @@ export default function InteractiveMonitor({
     }
   }, [isMonitorOn]);
 
-  // Start idle timer when monitor is active
-  useEffect(() => {
-    if (isMonitorOn) {
-      startNarratorIdleTimer('monitor');
-    }
-    return () => clearNarratorIdleTimer();
-  }, [isMonitorOn, startNarratorIdleTimer, clearNarratorIdleTimer]);
-
-  // Reset idle timer on user interaction
+  // Reset on user interaction
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
-    clearNarratorIdleTimer();
-    if (e.target.value.length > 0) {
-      startNarratorIdleTimer('monitor');
-    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -68,7 +55,6 @@ export default function InteractiveMonitor({
         response = 'Opening Git workspace...';
         setCommandHistory((prev) => [...prev, { command, response }]);
         setInput('');
-        clearNarratorIdleTimer();
         // Trigger the parent callback after a brief delay to show the response
         setTimeout(() => {
           onCommandEntered(command);
@@ -89,17 +75,16 @@ export default function InteractiveMonitor({
 
       setCommandHistory((prev) => [...prev, { command, response }]);
       setInput('');
-      clearNarratorIdleTimer();
     }
   };
 
   if (!isMonitorOn) {
-    return <div className="w-full h-full bg-gray-800 flex items-center justify-center"></div>;
+    return <div className="w-full h-full bg-red-800 flex items-center justify-center"></div>;
   }
 
   return (
     <div
-      className="w-full h-full p-4 text-xs overflow-hidden border-2"
+      className="w-full h-full p-4 text-sm overflow-hidden border-2"
       style={{
         backgroundColor: theme.background,
         borderColor: theme.line,
@@ -153,7 +138,7 @@ export default function InteractiveMonitor({
               value={input}
               onChange={handleInputChange}
               onKeyPress={handleKeyPress}
-              className="bg-transparent outline-none border-none w-full text-xs"
+              className="bg-transparent outline-none border-none w-full text-sm"
               style={{
                 caretColor: 'transparent',
                 color: theme.command,
@@ -185,7 +170,7 @@ export default function InteractiveMonitor({
 
         {/* Hint text */}
         {commandHistory.length === 0 && (
-          <div className="mt-2 text-xs opacity-60" style={{ color: theme.textMuted }}>
+          <div className="mt-2 text-sm opacity-60" style={{ color: theme.textMuted }}>
             Try typing: git status, options, help
           </div>
         )}

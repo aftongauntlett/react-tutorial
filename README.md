@@ -7,7 +7,7 @@
 
 ![React](https://img.shields.io/badge/React_19-61DAFB?style=flat&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=flat&logo=vite&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript_5.8-3178C6?style=flat&logo=typescript&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript_5.9-3178C6?style=flat&logo=typescript&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_3.4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 ![Zustand](https://img.shields.io/badge/Zustand-2D3748?style=flat&logo=zustand&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white)
@@ -20,6 +20,8 @@
 ![Responsive](https://img.shields.io/badge/Responsive_Design-06D6A0?style=flat&logo=css3&logoColor=white)
 
 An immersive, video game themed tutorial application - showcasing advanced frontend development, game-inspired UI/UX design, and accessibility-first development practices. Features interactive terminal simulations, character-based theming, and engaging narrative-driven learning experiences.
+
+> **[Live Demo (Work in Progress)](https://react-tutorial-rho-seven.vercel.app/)** - Currently in active development. Some features are functional while others are being built out. Expect frequent updates and potential breaking changes.
 
 ## Features
 
@@ -63,6 +65,10 @@ Open [http://localhost:5173](http://localhost:5173) to begin the tutorial.
 
 **Ready to learn git through an immersive Stanley Parable experience!**
 
+## Feedback & Bug Reports
+
+Found a bug or have a suggestion? Please [open an issue](https://github.com/aftongauntlett/react-tutorial/issues/new) on GitHub. Your feedback helps improve the project!
+
 ## Technical Implementation
 
 **Demonstrating advanced frontend development skills:**
@@ -81,30 +87,6 @@ Open [http://localhost:5173](http://localhost:5173) to begin the tutorial.
 - **Complex State Orchestration**: Multi-phase tutorial progression with branching narratives
 - **Terminal Simulation**: Full git command parsing and response system
 - **Micro-interactions**: Subtle animations and feedback for enhanced user engagement
-
-## Project Structure
-
-```
-src/
-├── components/
-│   ├── room-427/               # Main tutorial components
-│   │   ├── BreakoutTerminal.tsx    # Interactive git terminal
-│   │   ├── GitChatbot.tsx          # AI assistance interface
-│   │   ├── GitTerminalPanel.tsx    # Main terminal component
-│   │   ├── InteractiveMonitor.tsx  # Game-style monitor
-│   │   └── ThemedBreakoutTerminal.tsx # Narrator-themed terminal
-│   ├── shared/                 # Reusable UI components
-│   └── LevelSelect.tsx         # Game level selection interface
-├── lib/
-│   ├── gitHelp.ts             # Comprehensive git documentation
-│   ├── mockGitTerminal.ts     # Terminal simulation engine
-│   ├── narratorThemes.ts      # Character theming system
-│   └── state/                 # Zustand state management
-├── content/                   # Game narratives and dialogue
-├── hooks/                     # Custom React hooks
-├── pages/                     # Route components
-└── theme.css                  # CSS custom properties system
-```
 
 ## Skills Demonstrated
 

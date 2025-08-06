@@ -212,7 +212,7 @@ export default function GitChatbot({ isVisible, onClose }: GitChatbotProps) {
                 }`}
               >
                 <div className="text-sm">{formatMessageContent(message.content)}</div>
-                <div className="text-xs opacity-60 mt-1">
+                <div className="text-sm opacity-60 mt-1">
                   {message.timestamp.toLocaleTimeString()}
                 </div>
               </div>
@@ -259,7 +259,7 @@ export default function GitChatbot({ isVisible, onClose }: GitChatbotProps) {
               Send
             </button>
           </form>
-          <div className="text-xs text-gray-400 mt-2">
+          <div className="text-sm text-gray-400 mt-2">
             Try: "help git status", "what is a merge conflict?", "git commit examples"
           </div>
         </div>

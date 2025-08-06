@@ -1,5 +1,6 @@
 import { useSimulationStore } from '@/lib/state/simulationStore';
 import { useNarrator } from '@/hooks/useNarrator';
+import { narratorLines } from '@/content/room-427/narratorLines';
 import { useEffect, useState } from 'react';
 
 /**
@@ -7,67 +8,67 @@ import { useEffect, useState } from 'react';
  * in a bottom-center overlay, matching the game's visual style.
  */
 export default function NarratorOverlay() {
-  const { phase, currentNarratorText, turnOnMonitor } = useSimulationStore();
+  const { phase, currentNarratorText, turnOnMonitor, triggerTerminalWaiting } =
+    useSimulationStore();
   const [narratorStarted, setNarratorStarted] = useState(false);
 
-  // Define narrator sequences for each phase
+  // Define narrator sequences for each trigger - back to simple approach that worked
   const narratorSequences: Record<string, string[]> = {
-    'phone-active': [
-      'Ah, Stanley. So good of you to finally pick up the phone.',
-      "I do hope you're prepared for what promises to be... an enlightening interview experience.",
-      'You see, Stanley, we need to assess your... capabilities.',
+    'phone-answered': narratorLines.phoneAnswered,
+    'terminal-waiting': [
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Stanley found himself staring at the mysterious terminal interface.',
     ],
-    'monitor-active': [
-      'Stanley stared at his monitor, which had mysteriously come to life.',
-      'Perhaps now he could demonstrate the extent of his... programming prowess.',
-    ],
-    'terminal-breakout': [
-      'What... what are you doing, Stanley?',
-      'That terminal is supposed to stay INSIDE the monitor!',
-      "How did you... that's not how computers work!",
-      "Never mind. We don't have time for this nonsense.",
-    ],
-    'terminal-restore': [
-      'Finally! Stanley put the terminal back where it belongs.',
-      "Though I suspect he'll do something equally ridiculous momentarily.",
-    ],
-    'settings-active': [
-      "Oh, how delightful! Stanley simply couldn't resist the allure of a settings menu.",
-      "It's almost as if he finds genuine pleasure in adjusting sliders that may or may not do anything at all.",
-    ],
+    'terminal-breakout': narratorLines.terminalBreakout,
+    'terminal-restore': narratorLines.terminalRestore,
   };
 
-  const currentSequence = narratorSequences[phase] || [];
+  const currentSequence = narratorSequences[currentNarratorText] || [];
 
-  // Start narrator when specific phases are triggered
+  // Start narrator when we get a valid currentNarratorText
   useEffect(() => {
-    if (
-      currentNarratorText &&
-      (phase === 'phone-active' || phase === 'terminal-breakout' || phase === 'terminal-restore') &&
-      !narratorStarted
-    ) {
+    if (currentNarratorText && currentSequence.length > 0 && !narratorStarted) {
       setNarratorStarted(true);
     }
-  }, [currentNarratorText, phase, narratorStarted]);
+  }, [currentNarratorText, currentSequence.length, narratorStarted]);
 
-  // Reset when phase changes
+  // Reset when currentNarratorText becomes empty or phase goes to idle
+  // But keep narrator visible during terminal-waiting phase if it was from phone-answered
   useEffect(() => {
-    setNarratorStarted(false);
-  }, [phase]);
+    if (!currentNarratorText || phase === 'idle') {
+      // Don't reset if we're in terminal-waiting phase and came from phone sequence
+      if (phase === 'terminal-waiting' && currentNarratorText === 'phone-answered') {
+        return; // Keep narrator visible
+      }
+      setNarratorStarted(false);
+    }
+  }, [currentNarratorText, phase]);
 
   const narrator = useNarrator({
     lines: currentSequence,
     isActive: narratorStarted,
+    disableSpacebarOnLastLine: currentNarratorText === 'phone-answered', // Disable spacebar on last line for phone sequence
     onComplete: () => {
-      if (phase === 'phone-active') {
-        setTimeout(() => {
+      // For non-phone sequences, hide narrator normally
+      if (currentNarratorText !== 'phone-answered') {
+        setNarratorStarted(false);
+      }
+      // For phone sequence, onLineComplete handles the last line transition
+    },
+    onLineComplete: (lineIndex: number) => {
+      if (currentNarratorText === 'phone-answered') {
+        // Turn on monitor after "Orders came to him through a monitor..." line (index 2)
+        if (lineIndex === 2) {
           turnOnMonitor();
-        }, 500);
+        }
+        // When reaching the last line ("Stanley, push the space bar"), trigger terminal waiting
+        else if (lineIndex === currentSequence.length - 1) {
+          triggerTerminalWaiting();
+        }
       }
     },
   });
 
-  // Only show when narrator has started
+  // Only show when narrator is active
   if (!narratorStarted || currentSequence.length === 0) return null;
 
   return (

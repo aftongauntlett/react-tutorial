@@ -191,48 +191,46 @@ function LevelCard({
       `}
       >
         {level.isUnlocked ? (
-          <div className="text-xs text-center">
-            {isDLC && <div className="text-[var(--color-accent)] font-bold mb-1">DLC</div>}
-            <div className={isDLC ? 'text-[var(--color-accent)]' : 'text-[var(--color-muted)]'}>
+          <div className="text-sm text-center">
+            {isDLC && <div className="text-accent font-bold mb-1">DLC</div>}
+            <div className={isDLC ? 'text-accent' : 'text-muted'}>
               CH.{level.chapter}
               <br />
               PREVIEW
             </div>
           </div>
         ) : (
-          <div className="text-[var(--color-muted)]">🔒</div>
+          <div className="text-muted">🔒</div>
         )}
       </div>
 
       {/* Level Info */}
       <div className="flex-1">
-        <div className="text-xs text-[var(--color-accent)] font-bold tracking-wider mb-1">
+        <div className="text-sm text-accent font-bold tracking-wider mb-1">
           CHAPTER {level.chapter}
           {isDLC && (
-            <span className="ml-2 px-2 py-0.5 bg-[var(--color-accent)] text-black text-xs rounded">
+            <span className="ml-2 px-2 py-0.5 bg-[var(--color-accent)] text-black text-sm rounded">
               DLC
             </span>
           )}
         </div>
         <div
-          className={`text-xs font-bold tracking-wider mb-1 ${
+          className={`text-sm font-bold tracking-wider mb-1 ${
             isDLC ? 'text-[var(--color-accent)]' : 'text-[var(--color-primary)]'
           }`}
         >
           {level.subtitle}
         </div>
         <div className="font-bold text-base sm:text-lg font-barlow">{level.title}</div>
-        <div className="text-xs sm:text-sm text-[var(--color-muted)]">{level.concept}</div>
+        <div className="text-sm sm:text-sm text-muted-small">{level.concept}</div>
       </div>
 
       {/* Status Indicator */}
-      <div className="text-right text-xs">
+      <div className="text-right text-sm">
         {level.isUnlocked ? (
-          <div className={isDLC ? 'text-[var(--color-accent)]' : 'text-[var(--color-primary)]'}>
-            AVAILABLE
-          </div>
+          <div className={isDLC ? 'text-accent' : 'text-primary'}>AVAILABLE</div>
         ) : (
-          <div className="text-[var(--color-muted)]">LOCKED</div>
+          <div className="text-muted">LOCKED</div>
         )}
       </div>
     </div>
@@ -263,14 +261,14 @@ function LevelPreview({ level }: { level: Level }) {
                   {level.id === 'blackmesa' && '🔬'}
                   {level.id === 'final' && '👔'}
                 </div>
-                <div className="text-[var(--color-muted)] text-sm">{level.title} Preview</div>
+                <div className="text-muted-small text-sm">{level.title} Preview</div>
               </div>
             )}
           </div>
         ) : (
           <div className="text-center opacity-30">
             <div className="text-4xl mb-2">🔒</div>
-            <div className="text-[var(--color-muted)] text-sm">Complete previous chapter</div>
+            <div className="text-muted-small text-sm">Complete previous chapter</div>
           </div>
         )}
       </div>
@@ -278,15 +276,15 @@ function LevelPreview({ level }: { level: Level }) {
       {/* Description */}
       <div className="p-4 sm:p-6">
         <h3 className="text-lg sm:text-xl font-bold mb-2 font-barlow">{level.title}</h3>
-        <div className="text-xs sm:text-sm text-[var(--color-accent)] mb-3 font-bold tracking-wider">
+        <div className="text-sm sm:text-sm text-accent mb-3 font-bold tracking-wider">
           {level.subtitle}
         </div>
-        <p className="text-[var(--color-muted)] leading-relaxed text-sm">{level.description}</p>
+        <p className="text-muted-small leading-relaxed text-sm">{level.description}</p>
 
         {level.isUnlocked && (
-          <div className="mt-4 pt-4 border-t border-[var(--color-line)]">
-            <div className="text-xs text-[var(--color-muted)] mb-1">YOU WILL LEARN:</div>
-            <div className="text-sm text-[var(--color-text)]">{level.concept}</div>
+          <div className="mt-4 pt-4 border-t border-line">
+            <div className="text-sm text-muted-small mb-1">YOU WILL LEARN:</div>
+            <div className="text-sm text-text">{level.concept}</div>
           </div>
         )}
       </div>

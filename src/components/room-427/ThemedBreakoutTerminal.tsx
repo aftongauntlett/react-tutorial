@@ -270,7 +270,7 @@ export default function ThemedBreakoutTerminal({
                 {
                   '--color-terminal-bg': theme.background,
                   '--color-text': theme.text,
-                  '--color-text-muted': theme.textMuted,
+                  '--color-muted': theme.textMuted,
                   '--color-text-white': '#e0e0e0',
                   '--color-command': theme.command,
                   '--color-output': theme.output,

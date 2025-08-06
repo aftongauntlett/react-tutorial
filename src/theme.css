@@ -21,13 +21,21 @@
   --color-surface: #1a1a1a;
   --color-surface-elevated: #242424;
   --color-text: #dcdcdc;
-  --color-text-muted: #888888;
-  --color-text-subtle: #666666;
+  --color-muted: #ada6a6;
+  --color-muted-small: #a0a0a0;
+  --color-subtle: #666666;
   --color-line: #39342e;
   --color-border: #333333;
+
+  /* Theme Colors - Default (Stanley Parable) */
   --color-primary: #74bbad;
   --color-primary-hover: #8cc5b8;
+  --color-primary-rgb: 116, 187, 173;
   --color-secondary: #9ca3af;
+  --color-secondary-hover: #a8afbd;
+  --color-secondary-rgb: 156, 163, 175;
+
+  /* Shared Accent Colors */
   --color-accent: #e06c75;
   --color-accent-hover: #e07a84;
   --color-success: #10b981;
@@ -47,14 +55,6 @@
   --color-card-border: var(--color-line);
   --color-card-hover: var(--color-primary);
 
-  /* Game-specific colors */
-  --color-stanley-yellow: #facc15;
-  --color-stanley-yellow-hover: #eab308;
-  --color-wheatley-blue: #3b82f6;
-  --color-aperture-orange: #f97316;
-  --color-glados-green: #10b981;
-  --color-gman-purple: #8b5cf6;
-
   /* Z-Index Scale */
   --z-base: 1;
   --z-dropdown: 10;
@@ -66,27 +66,30 @@
 
 /* Game Character Themes */
 .theme-stanley {
-  --color-primary: var(--color-stanley-yellow);
-  --color-primary-hover: var(--color-stanley-yellow-hover);
-  --color-accent: #1f2937;
+  --color-primary: #facc15;
+  --color-primary-hover: #eab308;
+  --color-primary-rgb: 250, 204, 21;
+  --color-secondary: #1f2937;
+  --color-secondary-hover: #374151;
+  --color-secondary-rgb: 31, 41, 55;
 }
 
-.theme-wheatley {
-  --color-primary: var(--color-wheatley-blue);
-  --color-primary-hover: #2563eb;
-  --color-accent: #f3f4f6;
-}
-
-.theme-glados {
-  --color-primary: var(--color-aperture-orange);
+.theme-portal {
+  --color-primary: #f97316;
   --color-primary-hover: #ea580c;
-  --color-accent: var(--color-glados-green);
+  --color-primary-rgb: 249, 115, 22;
+  --color-secondary: #10b981;
+  --color-secondary-hover: #059669;
+  --color-secondary-rgb: 16, 185, 129;
 }
 
-.theme-gman {
-  --color-primary: var(--color-gman-purple);
-  --color-primary-hover: #7c3aed;
-  --color-accent: #374151;
+.theme-halflife {
+  --color-primary: #3b82f6;
+  --color-primary-hover: #2563eb;
+  --color-primary-rgb: 59, 130, 246;
+  --color-secondary: #8b5cf6;
+  --color-secondary-hover: #7c3aed;
+  --color-secondary-rgb: 139, 92, 246;
 }
 
 /* Base Styles */

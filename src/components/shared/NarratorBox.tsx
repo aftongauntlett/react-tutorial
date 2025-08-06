@@ -4,7 +4,7 @@ type NarratorBoxProps = {
 
 export default function NarratorBox({ step }: NarratorBoxProps) {
   return (
-    <div className="w-full bg-[var(--color-terminal-bg)] text-[var(--color-muted)] p-[clamp(0.75rem,1.5vw,1.5rem)] text-center font-mono text-sm tracking-wide">
+    <div className="w-full bg-terminal-bg text-muted-small p-[clamp(0.75rem,1.5vw,1.5rem)] text-center font-mono text-sm tracking-wide">
       {/* Placeholder narrator text */}
       <p>
         {/* This would update based on user input */}
